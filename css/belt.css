@@ -37,12 +37,40 @@
   50% { filter: drop-shadow(0 0 12px #a6e3a1) drop-shadow(0 0 24px rgba(166, 227, 161, 0.5)); }
 }
 
+/* Second belt (lower tier) */
+.second-belt {
+  opacity: 0.85;
+  transform: scale(0.92);
+  transform-origin: center top;
+  border-color: var(--overlay) !important;
+}
+
+.second-belt.belt-success {
+  border-color: var(--green) !important;
+  animation: secondBeltReveal 0.4s ease both;
+}
+
+@keyframes secondBeltReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(-8px);
+  }
+  to {
+    opacity: 0.85;
+    transform: scale(0.92) translateY(0);
+  }
+}
+
 /* Plate container */
 .plate-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: plateSlideUp 0.4s ease both;
+  gap: 16px;
+}
+
+.plate-item {
+  animation: plateSlideUp 0.4s ease calc(var(--plate-delay, 0s)) both;
 }
 
 .plate-container.hidden {

@@ -19,7 +19,7 @@ function navigateToLevel(id) {
   focusEditor()
 }
 
-async function runCode() {
+function runCode() {
   if (!currentLevel) return
 
   const userCode = getEditorContent().trim()
@@ -28,7 +28,7 @@ async function runCode() {
     return
   }
 
-  const result = await executeLevel(currentLevel, userCode)
+  const result = executeLevel(currentLevel, userCode)
 
   if (result.success) {
     showFeedback('Correct! Great job!', 'success')

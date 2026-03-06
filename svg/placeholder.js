@@ -63,10 +63,11 @@ function escapeHtml(str) {
 export function renderBelt(items, label, highlightIndex) {
   if (!items || items.length === 0) {
     return `
-      <svg viewBox="0 0 600 130" class="belt-svg">
+      <svg viewBox="0 0 600 ${label ? 145 : 130}" class="belt-svg">
         <rect x="0" y="45" width="600" height="50" rx="6" fill="#313244" class="belt-track"/>
         <line x1="0" y1="70" x2="600" y2="70" stroke="#45475a" stroke-width="2" stroke-dasharray="8 6" class="belt-line"/>
         <text x="300" y="75" text-anchor="middle" fill="#6c7086" font-size="14" font-family="sans-serif">empty belt</text>
+        ${label ? `<text x="300" y="125" text-anchor="middle" fill="#a6adc8" font-size="12" font-family="sans-serif">${escapeHtml(label)}</text>` : ''}
       </svg>
     `
   }
@@ -75,7 +76,7 @@ export function renderBelt(items, label, highlightIndex) {
   const totalWidth = Math.max(600, items.length * itemWidth + 20)
 
   const sushiItems = items
-    .map((item, i) => renderSushiItem(item, i * itemWidth + 10, i, i === highlightIndex))
+    .map((item, i) => renderSushiItem(item, i * itemWidth + 10, i, Array.isArray(highlightIndex) ? highlightIndex.includes(i) : i === highlightIndex))
     .join('')
 
   return `

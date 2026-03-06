@@ -34,7 +34,7 @@ export function sanitize(code) {
   return { ok: true }
 }
 
-export async function executeLevel(level, userCode) {
+export function executeLevel(level, userCode) {
   const check = sanitize(userCode)
   if (!check.ok) {
     return { success: false, error: check.message }
@@ -43,31 +43,12 @@ export async function executeLevel(level, userCode) {
   const fullCode = [level.preCode, userCode, level.postCode].filter(Boolean).join('\n')
 
   try {
-    let context = {}
-
-    if (level.async) {
-      const wrapped = `
-        return (async () => {
-          ${fullCode}
-          return { ${extractVarNames(level, userCode).join(', ')} }
-        })()
-      `
-      const fn = new Function(wrapped)
-      const timeoutMs = 3000
-      context = await Promise.race([
-        fn(),
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Timed out — your code took too long.')), timeoutMs),
-        ),
-      ])
-    } else {
-      const wrapped = `
-        ${fullCode}
-        return { ${extractVarNames(level, userCode).join(', ')} }
-      `
-      const fn = new Function(wrapped)
-      context = fn()
-    }
+    const wrapped = `
+      ${fullCode}
+      return { ${extractVarNames(level, userCode).join(', ')} }
+    `
+    const fn = new Function(wrapped)
+    const context = fn()
 
     const passed = level.validate(userCode, context)
     return {
@@ -84,17 +65,23 @@ function extractVarNames(level, userCode) {
   const allCode = [level.preCode, userCode, level.postCode].filter(Boolean).join('\n')
   const names = new Set()
 
-  const constLetVar = /(?:const|let|var)\s+(?:\[([^\]]+)\]|(\w+))/g
+  const constLetVar = /(?:const|let|var)\s+(?:\[([^\]]+)\]|\{([^}]+)\}|(\w+))/g
   let match
   while ((match = constLetVar.exec(allCode)) !== null) {
     if (match[1]) {
-      // destructuring: const [a, b, ...rest] = ...
+      // array destructuring: const [a, b, ...rest] = ...
       match[1].split(',').forEach((part) => {
-        const name = part.replace(/\.\.\./g, '').trim()
+        const name = part.replace(/\.\.\./g, '').replace(/=[^,]*/g, '').trim()
         if (name) names.add(name)
       })
     } else if (match[2]) {
-      names.add(match[2])
+      // object destructuring: const { name, price } = ...
+      match[2].split(',').forEach((part) => {
+        const name = part.replace(/\.\.\./g, '').trim()
+        if (name) names.add(name)
+      })
+    } else if (match[3]) {
+      names.add(match[3])
     }
   }
 
@@ -108,6 +95,15 @@ function extractVarNames(level, userCode) {
   const methodCalls = /^(\w+)\.\w+\(/gm
   while ((match = methodCalls.exec(allCode)) !== null) {
     names.add(match[1])
+  }
+
+  // Grab bare reassignments like `[a, b] = [b, a]`
+  const bareDestructure = /^(?!\s*(?:const|let|var)\s)\s*\[([^\]]+)\]\s*=/gm
+  while ((match = bareDestructure.exec(allCode)) !== null) {
+    match[1].split(',').forEach((part) => {
+      const name = part.replace(/\.\.\./g, '').trim()
+      if (name) names.add(name)
+    })
   }
 
   return [...names]
