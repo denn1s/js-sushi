@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Sushi — Learn JavaScript Through Arrays</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/belt.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "@codemirror/state": "https://esm.sh/@codemirror/state@6.5.2",
+        "@codemirror/view": "https://esm.sh/@codemirror/view@6.36.5?external=@codemirror/state",
+        "@codemirror/basic-setup": "https://esm.sh/@codemirror/basic-setup@0.20.0?external=@codemirror/state,@codemirror/view",
+        "@codemirror/lang-javascript": "https://esm.sh/@codemirror/lang-javascript@6.2.3?external=@codemirror/state,@codemirror/view",
+        "@codemirror/language": "https://esm.sh/@codemirror/language@6.10.8?external=@codemirror/state,@codemirror/view",
+        "@codemirror/autocomplete": "https://esm.sh/@codemirror/autocomplete@6.18.6?external=@codemirror/state,@codemirror/view,@codemirror/language",
+        "@codemirror/commands": "https://esm.sh/@codemirror/commands@6.8.1?external=@codemirror/state,@codemirror/view",
+        "@codemirror/search": "https://esm.sh/@codemirror/search@6.5.10?external=@codemirror/state,@codemirror/view",
+        "@codemirror/lint": "https://esm.sh/@codemirror/lint@6.8.5?external=@codemirror/state,@codemirror/view",
+        "@lezer/common": "https://esm.sh/@lezer/common@1.2.3",
+        "@lezer/highlight": "https://esm.sh/@lezer/highlight@1.2.1?external=@lezer/common",
+        "@lezer/lr": "https://esm.sh/@lezer/lr@1.4.2?external=@lezer/common,@lezer/highlight",
+        "@lezer/javascript": "https://esm.sh/@lezer/javascript@1.4.21?external=@lezer/common,@lezer/highlight,@lezer/lr"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <h1>JS Sushi 🍣</h1>
+    <div class="header-nav">
+      <span id="chapter-label"></span>
+      <span id="level-indicator"></span>
+      <button class="nav-btn" id="prev-btn">&larr; Prev</button>
+      <button class="nav-btn" id="next-btn">Next &rarr;</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="info-panel">
+      <h2 id="level-title"></h2>
+      <div class="description" id="level-description"></div>
+      <button id="hint-btn">Show Hint</button>
+      <div id="level-hint" class="hidden"></div>
+    </aside>
+
+    <section class="game-panel">
+      <div class="belt-section">
+        <div class="belt-container" id="belt-display"></div>
+        <div class="plate-container hidden" id="plate-display"></div>
+      </div>
+
+      <div class="editor-section">
+        <pre class="pre-code" id="pre-code"></pre>
+        <div id="editor-container"></div>
+        <pre class="post-code" id="post-code"></pre>
+        <div class="editor-controls">
+          <button id="run-btn">Run ▶</button>
+          <span class="run-hint">Ctrl+Enter</span>
+        </div>
+      </div>
+
+      <div class="feedback hidden" id="feedback"></div>
+    </section>
+  </main>
+
+  <nav class="level-selector-bar" id="level-selector"></nav>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

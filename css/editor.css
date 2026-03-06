@@ -1,0 +1,8 @@
+.cm-editor .cm-line {
+  padding-left: 8px;
+}
+
+.cm-editor .cm-placeholder {
+  color: #6c7086;
+  font-style: italic;
+}

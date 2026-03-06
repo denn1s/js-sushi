@@ -1,0 +1,91 @@
+.belt-line {
+  animation: beltScroll 2s linear infinite;
+}
+
+@keyframes beltScroll {
+  from { stroke-dashoffset: 0 }
+  to { stroke-dashoffset: -28 }
+}
+
+.sushi-item {
+  animation: slideIn 0.4s ease calc(var(--delay)) both;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sushi-piece {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* Highlighted sushi item (extraction indicator) */
+.sushi-item.highlighted .sushi-piece {
+  filter: drop-shadow(0 0 8px #a6e3a1) drop-shadow(0 0 16px rgba(166, 227, 161, 0.4));
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px #a6e3a1) drop-shadow(0 0 12px rgba(166, 227, 161, 0.3)); }
+  50% { filter: drop-shadow(0 0 12px #a6e3a1) drop-shadow(0 0 24px rgba(166, 227, 161, 0.5)); }
+}
+
+/* Plate container */
+.plate-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: plateSlideUp 0.4s ease both;
+}
+
+.plate-container.hidden {
+  display: none;
+}
+
+.plate-svg {
+  width: 180px;
+  height: auto;
+}
+
+@keyframes plateSlideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Plate sushi entrance */
+.plate-sushi {
+  animation: popIn 0.4s ease 0.2s both;
+}
+
+/* Value badge entrance */
+.value-badge {
+  animation: badgePop 0.4s ease 0.2s both;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
