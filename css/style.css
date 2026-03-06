@@ -110,8 +110,15 @@ body {
 
 .info-panel h2 {
   font-size: 1.1rem;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   color: var(--peach);
+}
+
+.info-panel .subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 12px;
 }
 
 .info-panel .description {

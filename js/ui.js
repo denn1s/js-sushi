@@ -2,6 +2,7 @@ import levels from './levels.js'
 import { loadProgress } from './progress.js'
 
 const levelTitle = document.getElementById('level-title')
+const levelSubtitle = document.getElementById('level-subtitle')
 const levelDesc = document.getElementById('level-description')
 const levelHint = document.getElementById('level-hint')
 const hintBtn = document.getElementById('hint-btn')
@@ -58,6 +59,8 @@ function buildLevelSelector() {
 
 export function renderLevel(level) {
   levelTitle.textContent = `${level.id}. ${level.title}`
+  levelSubtitle.textContent = level.subtitle || ''
+  levelSubtitle.classList.toggle('hidden', !level.subtitle)
   levelDesc.innerHTML = level.description
   levelHint.textContent = level.hint
   levelHint.classList.add('hidden')

@@ -34,7 +34,7 @@ svg/
 ## Level Data Shape
 
 Each level in `levels.js` has:
-- `id`, `title`, `chapter`, `chapterName` — metadata
+- `id`, `title`, `subtitle`, `chapter`, `chapterName` — metadata (`title` is fun/sushi-themed, `subtitle` is the technical JS concept)
 - `description` — HTML string shown in info panel
 - `hint` — togglable hint text
 - `preCode` / `postCode` — read-only code shown above/below editor, concatenated with user code for execution
@@ -48,15 +48,15 @@ Each level in `levels.js` has:
 - `beltBeforeLabel` / `beltAfterLabel` — optional belt labels
 - `async` — flag for Promise-based levels (wraps execution in async IIFE with timeout)
 
-## 7 Chapters, 38 Levels
+## 7 Chapters, 40 Levels
 
 1. **The Empty Belt** (1-6) — Array creation, access, mutation
-2. **Adding & Removing** (7-12) — push, pop, unshift, shift, splice
-3. **Searching the Belt** (13-17) — includes, indexOf, find, findIndex, every
-4. **Transforming the Belt** (18-25) — filter, map, reduce, chaining, named callbacks
-5. **Sorting & Rearranging** (26-29) — sort, reverse, slice
-6. **Modern JS** (30-34) — spread, destructuring, flat, flatMap
-7. **Async Sushi Bar** (35-38) — Promises, async/await, Promise.all
+2. **Adding & Removing** (7-15) — push, pop, unshift, shift, splice, slice
+3. **Searching the Belt** (16-21) — includes, indexOf, find, findIndex, every
+4. **Transforming the Belt** (22-28) — filter, map, reduce, objects
+5. **Sorting & Rearranging** (29) — sort
+6. **Spread & Copying** (30-34) — copy trap, spread copy, safe copy, spread add
+7. **Destructuring** (35-40) — pick, rest, skip, objects, final challenge
 
 ## Code Style Conventions
 
