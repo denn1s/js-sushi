@@ -1,4 +1,4 @@
-import levels from './levels.js'
+import levels from './levels/index.js'
 import { loadProgress } from './progress.js'
 
 const levelTitle = document.getElementById('level-title')

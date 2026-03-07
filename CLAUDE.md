@@ -8,7 +8,15 @@ A browser-based interactive game that teaches JavaScript array methods through a
 index.html          — Single-page app entry point
 js/
   main.js           — App init, level navigation, code execution flow
-  levels.js         — All 38 levels (data + validation functions)
+  levels/           — Level definitions split by chapter
+    index.js        — Re-exports all chapters as a single levels array
+    chapter1.js     — The Empty Belt (levels 1-6)
+    chapter2.js     — Adding & Removing (levels 7-15)
+    chapter3.js     — Searching the Belt (levels 16-21)
+    chapter4.js     — Transforming the Belt (levels 22-28)
+    chapter5.js     — Sorting & Rearranging (level 29)
+    chapter6.js     — Spread & Copying (levels 30-34)
+    chapter7.js     — Destructuring (levels 35-40)
   engine.js         — Sandboxed code execution (new Function), input sanitization
   editor.js         — CodeMirror 6 editor with locked prefix support
   belt.js           — Single belt SVG visualization controller
@@ -48,7 +56,7 @@ Each level in `levels.js` has:
 - `beltBeforeLabel` / `beltAfterLabel` — optional belt labels
 - `async` — flag for Promise-based levels (wraps execution in async IIFE with timeout)
 
-## 7 Chapters, 40 Levels
+## 7 Chapters, 40 Levels (defined in js/levels/)
 
 1. **The Empty Belt** (1-6) — Array creation, access, mutation
 2. **Adding & Removing** (7-15) — push, pop, unshift, shift, splice, slice

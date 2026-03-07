@@ -1,4 +1,4 @@
-import levels from './levels.js'
+import levels from './levels/index.js'
 import { loadProgress, setCurrentLevel, markCompleted } from './progress.js'
 import { executeLevel } from './engine.js'
 import { createEditor, setEditorContent, getEditorContent, focusEditor } from './editor.js'
