@@ -1,0 +1,71 @@
+.instructions-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instructions-header {
+  text-align: center;
+}
+
+.instructions-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--yellow);
+  -webkit-text-stroke: 3px var(--content-text);
+  text-stroke: 3px var(--content-text);
+  paint-order: stroke fill;
+  line-height: 1.2;
+}
+
+.instructions-subtitle {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: var(--content-text);
+  margin-top: -2px;
+}
+
+.instructions-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--content-text);
+}
+
+.instructions-body code {
+  background: var(--content-highlight);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+.hint-btn {
+  align-self: center;
+  background: #E9CFAC;
+  border: 2px solid var(--content-text);
+  border-radius: 10px;
+  padding: calc(8px - 2px) calc(16px + 2px) calc(8px + 2px) calc(10px - 2px);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--content-text);
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.1s;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.hint-btn:active {
+  box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.12);
+  padding: 8px 13px 8px 13px;
+}
+
+.hint-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: -4px;
+}
