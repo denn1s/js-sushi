@@ -19,6 +19,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: '.includes() uses strict equality (===), so it won\'t find 1 if the array has \'1\'. Types matter!',
     plate: { type: 'value', value: 'true', label: 'hasTuna' },
   },
   {
@@ -40,6 +41,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: '.indexOf() returns the first match. Use .lastIndexOf() to search from the end!',
     plate: { type: 'value', value: 2, label: 'pos' },
   },
   {
@@ -61,6 +63,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
+    successMessage: 'Passing a function by name (without parentheses) is called passing a "callback." You\'ll see this pattern everywhere in JS!',
     plate: { type: 'sushi', value: 'salmon', label: 'found', highlightIndex: 1 },
   },
   {
@@ -82,6 +85,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
+    successMessage: 'If .find() doesn\'t match anything, it returns undefined — not an error, not null. Always good to check!',
     plate: { type: 'sushi', value: 'shrimp', label: 'found', highlightIndex: 2 },
   },
   {
@@ -103,6 +107,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'eel', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'eel', 'shrimp'],
+    successMessage: 'Like .indexOf(), .findIndex() returns -1 when nothing matches. Same convention, but with a custom test!',
     plate: { type: 'value', value: 2, label: 'pos' },
   },
   {
@@ -124,6 +129,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'salmon', 'salmon'],
     beltAfter: ['salmon', 'salmon', 'salmon'],
+    successMessage: 'The opposite of .every() is .some() — it returns true if at least one item passes the test!',
     plate: { type: 'value', value: 'true', label: 'allSalmon' },
   },
 ]

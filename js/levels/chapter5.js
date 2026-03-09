@@ -19,6 +19,7 @@ const chapter5 = [
         userCode.includes('.sort(')
       )
     },
+    successMessage: '.sort() mutates the original array! For a safe sort, spread first: [...belt].sort(...). Also, without a compare function, .sort() converts to strings — so [10, 2, 1].sort() gives [1, 10, 2]!',
     beltBefore: [
       { name: 'eel', price: 4 },
       { name: 'salmon', price: 5 },

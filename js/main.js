@@ -1,7 +1,7 @@
 import levels from './levels/index.js'
 import { loadProgress, setCurrentLevel, markCompleted } from './progress.js'
 import { executeLevel } from './engine.js'
-import { createEditor, setEditorContent, getEditorContent, focusEditor } from './editor.js'
+import { createEditor, setEditorContent, getEditableContent, focusEditor } from './editor.js'
 import { showBelt, showSuccess } from './belt.js'
 import { initUI, renderLevel, showFeedback, updateLevelSelector } from './ui.js'
 
@@ -22,7 +22,7 @@ function navigateToLevel(id) {
 function runCode() {
   if (!currentLevel) return
 
-  const userCode = getEditorContent().trim()
+  const userCode = getEditableContent().trim()
   if (!userCode) {
     showFeedback('Type some code first!', 'error')
     return
@@ -31,7 +31,7 @@ function runCode() {
   const result = executeLevel(currentLevel, userCode)
 
   if (result.success) {
-    showFeedback('Correct! Great job!', 'success')
+    showFeedback(currentLevel.successMessage || 'Correct! Great job!', 'success')
     showSuccess(currentLevel)
     const progress = markCompleted(currentLevel.id, userCode)
     updateLevelSelector()

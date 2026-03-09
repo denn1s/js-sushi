@@ -23,6 +23,7 @@ const chapter1 = [
         context.belt[2] === 'shrimp'
       )
     },
+    successMessage: 'You can check if something is an array with Array.isArray(belt) — handy when you\'re not sure what you\'re working with!',
     beltBefore: ['salmon'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
   },
@@ -43,6 +44,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.count === 3
     },
+    successMessage: '.length isn\'t a method — no parentheses needed! It\'s a property. Strings have it too: try \'sushi\'.length in a console.',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
     plate: { type: 'value', value: 3, label: 'count' },
@@ -66,6 +68,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: 'Fun fact: belt[\'1\'] works too — JS quietly converts the string to a number!',
     plate: { type: 'sushi', value: 'tuna', label: 'picked', highlightIndex: 1 },
   },
   {
@@ -87,6 +90,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: 'Modern JS has an easier way: belt.at(-1) grabs the last item. Negative indices count from the end!',
     plate: { type: 'sushi', value: 'shrimp', label: 'last', highlightIndex: 2 },
   },
   {
@@ -104,6 +108,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.belt[1] === 'squid'
     },
+    successMessage: 'Even though belt was declared with const, you can still change its contents! const only prevents reassigning the variable itself, not mutating the array.',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'squid', 'shrimp'],
     highlightIndex: 1,
@@ -127,6 +132,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: 'Try .join(\' | \') or .join(\'\') for different effects. With no argument, .join() defaults to commas!',
     plate: { type: 'value', value: 'salmon,tuna,shrimp', label: 'menu' },
   },
 ]

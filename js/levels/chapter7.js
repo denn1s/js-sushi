@@ -17,6 +17,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
+    successMessage: 'Destructuring also works in function parameters! function eat([first]) { } unpacks the array right in the signature.',
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
   },
   {
@@ -40,6 +41,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'first', highlightIndex: 0 },
       { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
     ],
+    successMessage: 'You can set defaults too: const [first = \'empty\', second = \'empty\'] = belt. If the array is too short, the default kicks in!',
   },
   {
     title: 'Leftovers Bag',
@@ -65,6 +67,7 @@ const chapter7 = [
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
+    successMessage: '...rest must always be the last item in the pattern. const [...all, last] = belt would be a syntax error!',
     secondBeltAfter: ['tuna', 'shrimp', 'eel'],
     secondBeltAfterLabel: 'lowerBelt',
   },
@@ -85,6 +88,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
+    successMessage: 'You can skip multiple positions: const [, , third] = belt grabs only the third item. But at that point, belt[2] might be clearer!',
     plate: { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
   },
   {
@@ -114,6 +118,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'name', highlightIndex: 0 },
       { type: 'value', value: 5, label: 'price' },
     ],
+    successMessage: 'You can rename during destructuring: const { name: dishName } = dish puts the value into dishName instead of name!',
   },
   {
     title: 'The Lunch Menu',
@@ -146,6 +151,7 @@ const chapter7 = [
       { name: 'eel', price: 4 },
       { name: 'shrimp', price: 2 },
     ],
+    successMessage: 'You just chained .filter() and .map() with destructuring — a pattern used daily in professional codebases. You\'ve come a long way!',
     beltAfter: ['tuna', 'eel', 'shrimp'],
     beltAfterLabel: 'lunch menu',
   },

@@ -26,6 +26,7 @@ const chapter4 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna', 'salmon', 'shrimp'],
     beltAfterLabel: 'upper belt',
+    successMessage: '.filter() always returns a new array, even if nothing passes the test — you just get an empty array []!',
     secondBeltAfter: ['salmon', 'salmon'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -55,6 +56,7 @@ const chapter4 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna'],
     beltAfterLabel: 'upper belt',
+    successMessage: '.map() always returns an array with the same length as the original. Need fewer items? Combine it with .filter()!',
     secondBeltAfter: ['salmon + wasabi', 'tuna + wasabi'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -77,6 +79,7 @@ const chapter4 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: 'Without a starting value, .reduce() uses the first item as the initial accumulator and starts from the second item!',
     plate: { type: 'value', value: 'salmon, tuna, shrimp', label: 'menu' },
   },
   {
@@ -98,6 +101,7 @@ const chapter4 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
+    successMessage: 'You could count with belt.length, but .reduce() shines for conditional counting — like counting only the salmon!',
     plate: { type: 'value', value: 3, label: 'total' },
   },
   {
@@ -125,6 +129,7 @@ const chapter4 = [
       { name: 'salmon', price: 5 },
       { name: 'tuna', price: 3 },
     ],
+    successMessage: 'You can also use bracket notation: belt[0][\'price\']. This is useful when the property name is stored in a variable!',
     plate: { type: 'value', value: 5, label: 'price' },
   },
   {
@@ -168,6 +173,7 @@ const chapter4 = [
       { name: 'tuna', price: 3 },
       { name: 'shrimp', price: 2 },
     ],
+    successMessage: '.filter() is great for search features — you could filter by name, price, or any combination of properties!',
     secondBeltAfterLabel: 'lower belt',
   },
   {
@@ -206,6 +212,7 @@ const chapter4 = [
       { name: 'shrimp', price: 2 },
     ],
     beltAfterLabel: 'upper belt',
+    successMessage: 'Extracting one property from each object is called "plucking" — you\'ll use this pattern a lot with API data!',
     secondBeltAfter: ['salmon', 'tuna', 'shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },

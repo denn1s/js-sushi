@@ -15,6 +15,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt.length === 3 && context.belt[2] === 'eel'
     },
+    successMessage: '.push() returns the new length of the array, not the array itself! Try: const len = belt.push(\'eel\') — len would be 3.',
     beltBefore: ['salmon', 'tuna'],
     beltAfter: ['salmon', 'tuna', 'eel'],
     highlightIndex: 2,
@@ -38,6 +39,7 @@ const chapter2 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna'],
+    successMessage: '.push() and .pop() make arrays work like a stack — last in, first out (LIFO)!',
     plate: { type: 'sushi', value: 'shrimp', label: 'picked' },
   },
   {
@@ -55,6 +57,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt[0] === 'salmon' && context.belt.length === 3
     },
+    successMessage: 'Like .push(), .unshift() returns the new length. The name is confusing — think of it as un-doing a shift!',
     beltBefore: ['tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
     highlightIndex: 0,
@@ -78,6 +81,7 @@ const chapter2 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['tuna', 'shrimp'],
+    successMessage: 'shift/unshift are slower than push/pop because every remaining item has to be re-indexed. For most arrays it doesn\'t matter though!',
     plate: { type: 'sushi', value: 'salmon', label: 'picked' },
   },
   {
@@ -106,6 +110,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna', 'eel'],
     beltAfterLabel: 'upper belt',
+    successMessage: '.splice() always returns an array, even if you only removed one item. That\'s why lowerBelt is [\'shrimp\'], not just \'shrimp\'!',
     secondBeltAfter: ['shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -136,6 +141,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'eel'],
     beltAfterLabel: 'upper belt',
+    successMessage: 'If you skip the second argument, splice removes everything from that index onward: belt.splice(1) removes all but the first!',
     secondBeltAfter: ['tuna', 'shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -165,6 +171,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'squid', 'shrimp'],
     beltAfterLabel: 'upper belt',
+    successMessage: 'You can insert more items than you remove! splice(1, 1, \'a\', \'b\', \'c\') would replace one item with three.',
     secondBeltAfter: ['tuna'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -183,6 +190,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt.length === 4 && context.belt[1] === 'tuna' && context.belt[2] === 'eel'
     },
+    successMessage: '.splice() is the Swiss Army knife of array methods — it can remove, replace, and insert all in one call!',
     beltBefore: ['salmon', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'eel', 'shrimp'],
   },
@@ -214,6 +222,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfterLabel: 'upper belt',
+    successMessage: 'Notice the original array is unchanged — .slice() never mutates! Easy to mix up with .splice(), which does.',
     secondBeltAfter: ['tuna', 'shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },

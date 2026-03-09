@@ -9,10 +9,10 @@ const defaultProgress = {
 export function loadProgress() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return { ...defaultProgress }
+    if (!raw) return { ...defaultProgress, completedLevels: [], bestCode: {} }
     return JSON.parse(raw)
   } catch {
-    return { ...defaultProgress }
+    return { ...defaultProgress, completedLevels: [], bestCode: {} }
   }
 }
 

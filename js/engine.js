@@ -40,15 +40,16 @@ export function executeLevel(level, userCode) {
     return { success: false, error: check.message }
   }
 
-  const fullCode = [level.preCode, userCode, level.postCode].filter(Boolean).join('\n')
+  const editorCode = (level.lockedPrefix || '') + userCode
+  const fullCode = [level.preCode, editorCode, level.postCode].filter(Boolean).join('\n')
 
   try {
     const wrapped = `
       ${fullCode}
-      return { ${extractVarNames(level, userCode).join(', ')} }
+      return { ${extractVarNames(level, editorCode).join(', ')} }
     `
     const fn = new Function(wrapped)
-    const context = fn()
+    const context = fn.call(Object.create(null))
 
     const passed = level.validate(userCode, context)
     return {
