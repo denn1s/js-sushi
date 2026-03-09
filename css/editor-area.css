@@ -13,7 +13,7 @@
 }
 
 .editor-topbar-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
   font-weight: 700;
   color: #AEB9B5;
@@ -26,43 +26,119 @@
 }
 
 .editor-body {
-  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.pre-code, .post-code {
-  font-family: 'JetBrains Mono', monospace;
+/* Custom editor */
+
+.custom-editor {
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
+  line-height: 1.8;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 8px 4ch;
+  cursor: text;
+  position: relative;
+  height: 228px;
+}
+
+.custom-editor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 20px;
+  background: #171c1c;
+}
+
+.custom-editor::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 20px;
+  background: #171c1c;
+}
+
+.editor-line {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.line-num {
+  width: 30px;
+  margin-left: -4ch;
+  padding-right: 10px;
+  margin-right: 15px;
+  flex-shrink: 0;
+  text-align: right;
+  color: #6c7086;
+  user-select: none;
+  background: #171c1c;
+  box-shadow: -20px 0 0 0 #171c1c;
+}
+
+.editor-line.editable {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.editor-line.editable .line-num {
+  color: #cdd6f4;
+}
+
+.editor-line.empty .line-num {
+  color: #3a3f4a;
+}
+
+.line-text {
   color: #AEB9B5;
-  line-height: 1.5;
   white-space: pre-wrap;
-  margin: 0;
+}
+
+.locked-prefix {
+  color: #AEB9B5;
+  white-space: pre;
+}
+
+.code-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #cdd6f4;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  caret-color: #f5e0dc;
 }
 
 #editor-container {
-  border-radius: 6px;
   overflow: hidden;
 }
 
 .editor-run {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  border-left: 2px solid #323D39;
+  position: relative;
 }
 
 .run-btn {
+  position: absolute;
+  top: 114px;
+  right: 16px;
   background: var(--orange);
   border: 3px solid var(--content-text);
   border-radius: 14px;
   width: 88px;
   height: 88px;
   padding: 0;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Nunito', sans-serif;
   font-size: 1.4rem;
   font-weight: 900;
   color: var(--content-text);

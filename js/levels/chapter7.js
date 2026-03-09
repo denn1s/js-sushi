@@ -99,7 +99,8 @@ const chapter7 = [
     description:
       "We grabbed a dish from the belt, but it's an <strong>object</strong> with properties. Objects use curly braces <code>{ }</code> for destructuring, and the variable names must match the property names. Pull out <code>name</code> and <code>price</code> from <code>dish</code>!",
     hint: "Use curly braces instead of square brackets on the left side of =.",
-    preCode: "const belt = [{ name: 'salmon', price: 5 }, { name: 'tuna', price: 3 }]\nconst [dish] = belt",
+    preCode: "const belt = [{ name: 'salmon', price: 5 }, { name: 'tuna', price: 3 }]",
+    preCode2: "const [dish] = belt",
     postCode: '',
     placeholder: '',
     answer: 'const { name, price } = dish',

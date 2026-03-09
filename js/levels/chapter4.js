@@ -38,7 +38,8 @@ const chapter4 = [
     description:
       "A customer wants wasabi on every single dish. Bold choice! <code>.map()</code> transforms every item and puts the results on a <strong>new array</strong>. Your arrow function receives each dish and returns the transformed version. Add the <code>wasabi</code> topping to every dish!",
     hint: "Return the dish combined with the topping: (dish) => { return dish + wasabi }",
-    preCode: "const upperBelt = ['salmon', 'tuna']\nconst wasabi = ' + wasabi'",
+    preCode: "const upperBelt = ['salmon', 'tuna']",
+    preCode2: "const wasabi = ' + wasabi'",
     postCode: '',
     lockedPrefix: 'const lowerBelt = ',
     initialCode: '',
@@ -68,7 +69,8 @@ const chapter4 = [
     description:
       "The chef wants to combine all dishes into one menu string for the sign out front. <code>.reduce()</code> combines all items into a single value. Your function receives <strong>two</strong> parameters: the result built so far, and the current dish. We wrote <code>buildMenu</code> for you. Pass it to <code>.reduce()</code>!",
     hint: "Same as .find(): pass the function by name, no () after it!",
-    preCode: "const belt = ['salmon', 'tuna', 'shrimp']\nconst buildMenu = (menu, dish) => { return menu + ', ' + dish }",
+    preCode: "const belt = ['salmon', 'tuna', 'shrimp']",
+    preCode2: "const buildMenu = (menu, dish) => { \n\treturn menu + ', ' + dish \n}",
     postCode: '',
     lockedPrefix: 'const menu = ',
     initialCode: '',

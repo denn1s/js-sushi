@@ -41,7 +41,7 @@ export function executeLevel(level, userCode) {
   }
 
   const editorCode = (level.lockedPrefix || '') + userCode
-  const fullCode = [level.preCode, editorCode, level.postCode].filter(Boolean).join('\n')
+  const fullCode = [level.preCode, level.preCode2, editorCode, level.postCode].filter(Boolean).join('\n')
 
   try {
     const wrapped = `
@@ -63,7 +63,7 @@ export function executeLevel(level, userCode) {
 }
 
 function extractVarNames(level, userCode) {
-  const allCode = [level.preCode, userCode, level.postCode].filter(Boolean).join('\n')
+  const allCode = [level.preCode, level.preCode2, userCode, level.postCode].filter(Boolean).join('\n')
   const names = new Set()
 
   const constLetVar = /(?:const|let|var)\s+(?:\[([^\]]+)\]|\{([^}]+)\}|(\w+))/g

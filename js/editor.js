@@ -1,172 +1,118 @@
-import { basicSetup } from '@codemirror/basic-setup'
-import { keymap, EditorView, Decoration } from '@codemirror/view'
-import { EditorState, EditorSelection, StateField, StateEffect } from '@codemirror/state'
-import { javascript } from '@codemirror/lang-javascript'
-import { autocompletion } from '@codemirror/autocomplete'
-
-let editorView = null
+let editorRoot = null
+let inputEl = null
+let prefixEl = null
 let onRunCallback = null
-let lockedLen = 0
+let currentPrefix = ''
 
-const theme = EditorView.theme({
-  '&': {
-    fontSize: '15px',
-    backgroundColor: '#1e1e2e',
-    borderRadius: '8px',
-    border: '1px solid #45475a',
-  },
-  '.cm-content': {
-    caretColor: '#f5e0dc',
-    fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-    padding: '12px 0',
-  },
-  '.cm-gutters': {
-    backgroundColor: '#1e1e2e',
-    color: '#6c7086',
-    border: 'none',
-  },
-  '.cm-activeLine': {
-    backgroundColor: '#313244',
-  },
-  '.cm-selectionBackground': {
-    backgroundColor: '#45475a !important',
-  },
-  '&.cm-focused .cm-cursor': {
-    borderLeftColor: '#f5e0dc',
-  },
-  '&.cm-focused': {
-    outline: 'none',
-  },
-  '.cm-locked-prefix': {
-    color: '#6c7086',
-  },
-})
-
-const runKeymap = keymap.of([
-  {
-    key: 'Ctrl-Enter',
-    run: () => {
-      if (onRunCallback) onRunCallback()
-      return true
-    },
-  },
-  {
-    key: 'Cmd-Enter',
-    run: () => {
-      if (onRunCallback) onRunCallback()
-      return true
-    },
-  },
-])
-
-const blockEnter = keymap.of([
-  { key: 'Enter', run: () => true },
-  { key: 'Shift-Enter', run: () => true },
-])
-
-const prefixDeco = Decoration.mark({ class: 'cm-locked-prefix' })
-
-const prefixDecoField = StateField.define({
-  create(state) {
-    if (lockedLen > 0) {
-      return Decoration.set([prefixDeco.range(0, lockedLen)])
-    }
-    return Decoration.none
-  },
-  update(decos, tr) {
-    if (lockedLen > 0) {
-      return Decoration.set([prefixDeco.range(0, lockedLen)])
-    }
-    return Decoration.none
-  },
-  provide: (f) => EditorView.decorations.from(f),
-})
-
-function lockFilter() {
-  return EditorState.changeFilter.of((tr) => {
-    if (lockedLen === 0) return true
-    let dominated = true
-    tr.changes.iterChangedRanges((fromA, toA) => {
-      if (fromA < lockedLen) dominated = false
-    })
-    return dominated
-  })
-}
-
-function lockCursor() {
-  return EditorState.transactionFilter.of((tr) => {
-    if (lockedLen === 0) return tr
-    const sel = tr.newSelection
-    let needsFix = false
-    for (const range of sel.ranges) {
-      if (range.from < lockedLen || range.to < lockedLen) {
-        needsFix = true
-        break
-      }
-    }
-    if (!needsFix) return tr
-    const clamped = sel.ranges.map((r) => {
-      const from = Math.max(r.from, lockedLen)
-      const to = Math.max(r.to, lockedLen)
-      return EditorSelection.range(from, to)
-    })
-    return [tr, { selection: EditorSelection.create(clamped) }]
-  })
-}
+const MIN_LINES = 10
 
 export function createEditor(container, onRun) {
   onRunCallback = onRun
 
-  if (editorView) {
-    editorView.destroy()
+  editorRoot = document.createElement('div')
+  editorRoot.className = 'custom-editor'
+  editorRoot.addEventListener('click', () => {
+    if (inputEl) inputEl.focus()
+  })
+  container.appendChild(editorRoot)
+
+  return editorRoot
+}
+
+export function setPreCode(preCode, preCode2) {
+  if (!editorRoot) return
+
+  editorRoot.innerHTML = ''
+
+  const codes = [preCode, preCode2].filter(Boolean)
+  let lineNum = 1
+
+  for (const text of codes) {
+    const line = document.createElement('div')
+    line.className = 'editor-line readonly'
+
+    const num = document.createElement('span')
+    num.className = 'line-num'
+    num.textContent = lineNum
+
+    const code = document.createElement('span')
+    code.className = 'line-text'
+    code.textContent = text
+
+    line.appendChild(num)
+    line.appendChild(code)
+    editorRoot.appendChild(line)
+    lineNum++
   }
 
-  editorView = new EditorView({
-    parent: container,
-    state: EditorState.create({
-      doc: '',
-      extensions: [
-        basicSetup,
-        javascript(),
-        autocompletion({ override: [() => null], activateOnTyping: false }),
-        theme,
-        runKeymap,
-        blockEnter,
-        prefixDecoField,
-        lockFilter(),
-        lockCursor(),
-        EditorView.lineWrapping,
-      ],
-    }),
+  // Editable line
+  const editLine = document.createElement('div')
+  editLine.className = 'editor-line editable'
+
+  const num = document.createElement('span')
+  num.className = 'line-num'
+  num.textContent = lineNum
+
+  prefixEl = document.createElement('span')
+  prefixEl.className = 'locked-prefix'
+
+  inputEl = document.createElement('input')
+  inputEl.type = 'text'
+  inputEl.className = 'code-input'
+  inputEl.spellcheck = false
+  inputEl.autocomplete = 'off'
+
+  inputEl.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault()
+      if (onRunCallback) onRunCallback()
+    } else if (e.key === 'Enter') {
+      e.preventDefault()
+      if (onRunCallback) onRunCallback()
+    } else if (e.key === 'Escape') {
+      inputEl.blur()
+    }
   })
 
-  return editorView
+  editLine.appendChild(num)
+  editLine.appendChild(prefixEl)
+  editLine.appendChild(inputEl)
+  editorRoot.appendChild(editLine)
+  lineNum++
+
+  // Pad to MIN_LINES
+  while (lineNum <= MIN_LINES) {
+    const empty = document.createElement('div')
+    empty.className = 'editor-line empty'
+
+    const emptyNum = document.createElement('span')
+    emptyNum.className = 'line-num'
+    emptyNum.textContent = lineNum
+
+    empty.appendChild(emptyNum)
+    empty.innerHTML += '&nbsp;'
+    editorRoot.appendChild(empty)
+    lineNum++
+  }
 }
 
 export function setEditorContent(code, prefix = '') {
-  if (!editorView) return
-  lockedLen = 0 // temporarily unlock so the change goes through
-  const full = prefix + code
-  const spec = {
-    changes: { from: 0, to: editorView.state.doc.length, insert: full },
-  }
-  if (prefix.length > 0) {
-    spec.selection = { anchor: full.length }
-  }
-  editorView.dispatch(spec)
-  lockedLen = prefix.length // now lock
+  if (!inputEl) return
+  currentPrefix = prefix
+  prefixEl.textContent = prefix
+  inputEl.value = code
 }
 
 export function getEditorContent() {
-  if (!editorView) return ''
-  return editorView.state.doc.toString()
+  if (!inputEl) return ''
+  return currentPrefix + inputEl.value
 }
 
 export function getEditableContent() {
-  if (!editorView) return ''
-  return editorView.state.doc.toString().slice(lockedLen)
+  if (!inputEl) return ''
+  return inputEl.value
 }
 
 export function focusEditor() {
-  if (editorView) editorView.focus()
+  if (inputEl) inputEl.focus()
 }

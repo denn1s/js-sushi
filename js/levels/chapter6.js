@@ -8,7 +8,8 @@ const chapter6 = [
     description:
       "Watch out! The new cook tried to make a second belt by writing <code>lowerBelt = upperBelt</code>, but that doesn't actually copy it. Both variables point to the <strong>same</strong> belt! Try it: change the first dish on the lower belt to <code>'squid'</code> and see what happens to the upper belt!",
     hint: "Assign to index 0: lowerBelt[0] = 'squid'",
-    preCode: "const upperBelt = ['salmon', 'tuna', 'shrimp']\nconst lowerBelt = upperBelt",
+    preCode: "const upperBelt = ['salmon', 'tuna', 'shrimp']",
+    preCode2: "const lowerBelt = upperBelt",
     postCode: '',
     placeholder: '',
     answer: "lowerBelt[0] = 'squid'",
@@ -69,7 +70,8 @@ const chapter6 = [
     description:
       "Now the lower belt is a <strong>real copy</strong> made with spread. Let's prove it! Try the same thing as before: change the first dish to <code>'squid'</code>. This time, only the lower belt changes!",
     hint: "Same as before: lowerBelt[0] = 'squid'",
-    preCode: "const upperBelt = ['salmon', 'tuna', 'shrimp']\nconst lowerBelt = [...upperBelt]",
+    preCode: "const upperBelt = ['salmon', 'tuna', 'shrimp']",
+    preCode2: "const lowerBelt = [...upperBelt]",
     postCode: '',
     placeholder: '',
     answer: "lowerBelt[0] = 'squid'",
@@ -130,7 +132,8 @@ const chapter6 = [
     description:
       "The chef prepared some new dishes on a separate tray. Time to combine them! You can spread multiple arrays into one. Create a new belt with everything from the upper belt plus the <code>newDishes</code>.",
     hint: "Spread both arrays: [...upperBelt, ...newDishes]",
-    preCode: "const upperBelt = ['salmon', 'tuna']\nconst newDishes = ['eel', 'shrimp']",
+    preCode: "const upperBelt = ['salmon', 'tuna']",
+    preCode2: "const newDishes = ['eel', 'shrimp']",
     postCode: '',
     lockedPrefix: 'const lowerBelt = ',
     initialCode: '',

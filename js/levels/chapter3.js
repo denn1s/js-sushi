@@ -52,7 +52,8 @@ const chapter3 = [
     description:
       "The chef hired a taste-tester who only likes salmon. <code>.find()</code> looks at each dish on the belt and returns the first one that passes a test. You give it a function, and <code>.find()</code> calls that function for you on every dish. We already wrote <code>isSalmon</code> for you. Pass it to <code>.find()</code>, but don't call it yourself! No <code>()</code> after the name.",
     hint: "Put the function name inside .find(), remember, no () after it!",
-    preCode: "const belt = ['tuna', 'salmon', 'shrimp', 'salmon']\nconst isSalmon = (dish) => { return dish === 'salmon' }",
+    preCode: "const belt = ['tuna', 'salmon', 'shrimp', 'salmon']",
+    preCode2: "const isSalmon = (dish) => {\n\treturn dish === 'salmon'\n}",
     postCode: '',
     lockedPrefix: 'const found = ',
     initialCode: '',

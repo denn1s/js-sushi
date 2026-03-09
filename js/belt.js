@@ -5,6 +5,9 @@ const belt2El = document.getElementById('belt-display-2')
 const plateEl = document.getElementById('plate-display')
 
 export function showBelt(level) {
+  if (!beltEl) {
+    return
+  }
   beltEl.innerHTML = renderBelt(level.beltBefore, level.beltBeforeLabel || '')
   beltEl.classList.remove('belt-success')
 

@@ -28,14 +28,17 @@
 
 .title-area {
   grid-area: title;
+  height: 150px;
 }
 
 .instructions-area {
   grid-area: info;
+  height: 300px;
 }
 
 .editor-area {
   grid-area: editor;
+  height: 270px;
 }
 
 .sushi-area {

@@ -1,7 +1,7 @@
 import levels from './levels/index.js'
 import { loadProgress, setCurrentLevel, markCompleted } from './progress.js'
 import { executeLevel } from './engine.js'
-import { createEditor, setEditorContent, getEditableContent, focusEditor } from './editor.js'
+import { createEditor, setEditorContent, setPreCode, getEditableContent, focusEditor } from './editor.js'
 import { showBelt, showSuccess } from './belt.js'
 import { initUI, renderLevel, showFeedback, updateLevelSelector } from './ui.js'
 
@@ -15,6 +15,7 @@ function navigateToLevel(id) {
   setCurrentLevel(id)
   renderLevel(level)
   showBelt(level)
+  setPreCode(level.preCode, level.preCode2)
   setEditorContent(level.initialCode || '', level.lockedPrefix || '')
   focusEditor()
 }
