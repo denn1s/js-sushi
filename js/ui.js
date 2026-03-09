@@ -48,6 +48,7 @@ export function initUI(navigateCallback) {
   levelModalOverlay.addEventListener('click', closeModal)
 
   hintBtn.addEventListener('click', () => {
+    if (hintBtn.classList.contains('next-lesson-btn')) return
     const isOpen = !hintModal.classList.contains('hidden')
     if (isOpen) {
       closeHint()
@@ -105,12 +106,36 @@ export function renderLevel(level) {
   closeHint()
   currentLevelEl.textContent = level.id
 
+  // Restore hint button
+  hintBtn.classList.remove('next-lesson-btn')
+  hintBtn.innerHTML = '<img class="hint-icon" src="svg/light.svg" alt=""><span>Show Hint</span>'
+  hintBtn.onclick = null
+
   const idx = levels.findIndex((l) => l.id === level.id)
   prevBtn.disabled = idx === 0
   nextBtn.disabled = idx === levels.length - 1
 
   clearFeedback()
   updateLevelSelector()
+}
+
+export function showLevelSuccess(level) {
+  // Swap instructions body with success message
+  levelDesc.innerHTML = `<p>${level.successMessage || 'Great job!'}</p>`
+
+  // Replace hint button with Next Lesson button
+  closeHint()
+  const idx = levels.findIndex((l) => l.id === level.id)
+  const isLast = idx >= levels.length - 1
+
+  if (!isLast) {
+    hintBtn.classList.add('next-lesson-btn')
+    hintBtn.innerHTML = '<span>Next Lesson &rsaquo;</span>'
+    hintBtn.onclick = (e) => {
+      e.stopPropagation()
+      onNavigate(levels[idx + 1].id)
+    }
+  }
 }
 
 export function updateLevelSelector() {
@@ -123,11 +148,22 @@ export function updateLevelSelector() {
   })
 }
 
+let toastTimer = null
+
 export function showFeedback(message, type) {
-  // TODO: wire feedback element when added to new UI
-  console.log(`[${type}] ${message}`)
+  clearFeedback()
+  const container = document.getElementById('editor-container')
+  const toast = document.createElement('div')
+  toast.className = `editor-toast ${type}`
+  toast.textContent = message
+  container.appendChild(toast)
+  toastTimer = setTimeout(clearFeedback, 4000)
 }
 
 export function clearFeedback() {
-  // TODO: wire feedback element when added to new UI
+  if (toastTimer) {
+    clearTimeout(toastTimer)
+    toastTimer = null
+  }
+  document.querySelectorAll('.editor-toast').forEach((el) => el.remove())
 }

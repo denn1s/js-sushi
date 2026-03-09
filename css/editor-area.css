@@ -122,6 +122,45 @@
 
 #editor-container {
   overflow: hidden;
+  position: relative;
+}
+
+.editor-toast {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  padding: 8px 16px;
+  border: 2px solid var(--content-text);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--content-text);
+  z-index: 10;
+  animation: toast-in 0.2s ease-out;
+}
+
+.editor-toast.success {
+  background: var(--green);
+}
+
+.editor-toast.error {
+  background: var(--red);
+  color: var(--white);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .editor-run {

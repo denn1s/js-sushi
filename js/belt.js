@@ -37,8 +37,8 @@ export function showSuccess(level) {
   if (level.plate) {
     const plates = Array.isArray(level.plate) ? level.plate : [level.plate]
     const indices = plates
-      .map(p => p.highlightIndex)
-      .filter(i => i !== undefined)
+    .map(p => p.highlightIndex)
+    .filter(i => i !== undefined)
     if (indices.length === 1) {
       highlightIndex = indices[0]
     } else if (indices.length > 1) {
@@ -46,32 +46,36 @@ export function showSuccess(level) {
     }
   }
 
-  beltEl.innerHTML = renderBelt(level.beltAfter, level.beltAfterLabel || '', highlightIndex)
-  beltEl.classList.add('belt-success')
-  beltEl.querySelectorAll('.sushi-item').forEach((el, i) => {
-    el.style.animation = `popIn 0.3s ease ${i * 0.08}s both`
-  })
-
-  if (level.secondBeltAfter) {
-    belt2El.innerHTML = renderBelt(level.secondBeltAfter, level.secondBeltAfterLabel || '', level.secondBeltHighlightIndex)
-    belt2El.classList.remove('hidden')
-    belt2El.classList.add('belt-success')
-    belt2El.querySelectorAll('.sushi-item').forEach((el, i) => {
-      el.style.animation = `popIn 0.3s ease ${i * 0.08 + 0.2}s both`
+  if (beltEl) {
+    beltEl.innerHTML = renderBelt(level.beltAfter, level.beltAfterLabel || '', highlightIndex)
+    beltEl.classList.add('belt-success')
+    beltEl.querySelectorAll('.sushi-item').forEach((el, i) => {
+      el.style.animation = `popIn 0.3s ease ${i * 0.08}s both`
     })
-  } else {
-    belt2El.innerHTML = ''
-    belt2El.classList.add('hidden')
+
+    if (level.secondBeltAfter) {
+      belt2El.innerHTML = renderBelt(level.secondBeltAfter, level.secondBeltAfterLabel || '', level.secondBeltHighlightIndex)
+      belt2El.classList.remove('hidden')
+      belt2El.classList.add('belt-success')
+      belt2El.querySelectorAll('.sushi-item').forEach((el, i) => {
+        el.style.animation = `popIn 0.3s ease ${i * 0.08 + 0.2}s both`
+      })
+    } else {
+      belt2El.innerHTML = ''
+      belt2El.classList.add('hidden')
+    }
   }
 
-  if (level.plate) {
-    const plates = Array.isArray(level.plate) ? level.plate : [level.plate]
-    plateEl.innerHTML = plates.map((p, i) =>
-      `<div class="plate-item" style="--plate-delay: ${i * 0.12}s">${renderPlate(p)}</div>`
-    ).join('')
-    plateEl.classList.remove('hidden')
-  } else {
-    plateEl.innerHTML = ''
-    plateEl.classList.add('hidden')
+  if (plateEl) {
+    if (level.plate) {
+      const plates = Array.isArray(level.plate) ? level.plate : [level.plate]
+      plateEl.innerHTML = plates.map((p, i) =>
+        `<div class="plate-item" style="--plate-delay: ${i * 0.12}s">${renderPlate(p)}</div>`
+      ).join('')
+      plateEl.classList.remove('hidden')
+    } else {
+      plateEl.innerHTML = ''
+      plateEl.classList.add('hidden')
+    }
   }
 }

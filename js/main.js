@@ -3,7 +3,7 @@ import { loadProgress, setCurrentLevel, markCompleted } from './progress.js'
 import { executeLevel } from './engine.js'
 import { createEditor, setEditorContent, setPreCode, getEditableContent, focusEditor } from './editor.js'
 import { showBelt, showSuccess } from './belt.js'
-import { initUI, renderLevel, showFeedback, updateLevelSelector } from './ui.js'
+import { initUI, renderLevel, showFeedback, showLevelSuccess, updateLevelSelector } from './ui.js'
 
 let currentLevel = null
 
@@ -32,19 +32,11 @@ function runCode() {
   const result = executeLevel(currentLevel, userCode)
 
   if (result.success) {
-    showFeedback(currentLevel.successMessage || 'Correct! Great job!', 'success')
+    showFeedback('Congrats! You did it!', 'success')
     showSuccess(currentLevel)
+    showLevelSuccess(currentLevel)
     const progress = markCompleted(currentLevel.id, userCode)
     updateLevelSelector()
-
-    setTimeout(() => {
-      const idx = levels.findIndex((l) => l.id === currentLevel.id)
-      if (idx < levels.length - 1) {
-        const nextBtn = document.getElementById('next-btn')
-        nextBtn.classList.add('pulse')
-        setTimeout(() => nextBtn.classList.remove('pulse'), 2000)
-      }
-    }, 800)
   } else {
     showFeedback(result.error || 'Not quite — try again!', 'error')
   }
