@@ -15,7 +15,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt.length === 3 && context.belt[2] === 'eel'
     },
-    successMessage: '.push() returns the new length of the array, not the array itself! Try: const len = belt.push(\'eel\') — len would be 3.',
+    successMessage: '<code>.push()</code> returns the new length of the array, not the array itself. This surprises many beginners: <code>const x = arr.push("hi")</code> sets <code>x</code> to a number, not an array.',
     beltBefore: ['salmon', 'tuna'],
     beltAfter: ['salmon', 'tuna', 'eel'],
     highlightIndex: 2,
@@ -39,7 +39,7 @@ const chapter2 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna'],
-    successMessage: '.push() and .pop() make arrays work like a stack — last in, first out (LIFO)!',
+    successMessage: 'Together, <code>.push()</code> and <code>.pop()</code> turn any array into a stack: last in, first out. Stacks are a fundamental data structure used in undo systems, browser history, and JS call stacks.',
     plate: { type: 'sushi', value: 'shrimp', label: 'picked' },
   },
   {
@@ -57,7 +57,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt[0] === 'salmon' && context.belt.length === 3
     },
-    successMessage: 'Like .push(), .unshift() returns the new length. The name is confusing — think of it as un-doing a shift!',
+    successMessage: '<code>.unshift()</code> returns the new length, just like <code>.push()</code>. The name comes from <code>.shift()</code>: since shift removes from the front, unshift "undoes" that by adding to the front.',
     beltBefore: ['tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
     highlightIndex: 0,
@@ -81,7 +81,7 @@ const chapter2 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['tuna', 'shrimp'],
-    successMessage: 'shift/unshift are slower than push/pop because every remaining item has to be re-indexed. For most arrays it doesn\'t matter though!',
+    successMessage: '<code>.shift()</code> and <code>.unshift()</code> move every remaining element to update their indices, making them slower than <code>.push()</code> and <code>.pop()</code>. For small arrays it won\'t matter, but it adds up at scale.',
     plate: { type: 'sushi', value: 'salmon', label: 'picked' },
   },
   {
@@ -110,7 +110,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna', 'eel'],
     beltAfterLabel: 'upper belt',
-    successMessage: '.splice() always returns an array, even if you only removed one item. That\'s why lowerBelt is [\'shrimp\'], not just \'shrimp\'!',
+    successMessage: '<code>.splice()</code> always returns an array of removed items, even if you only removed one. Expect <code>[item]</code>, not <code>item</code>. This is consistent behavior, but watch out when you want a single value.',
     secondBeltAfter: ['shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -141,7 +141,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'eel'],
     beltAfterLabel: 'upper belt',
-    successMessage: 'If you skip the second argument, splice removes everything from that index onward: belt.splice(1) removes all but the first!',
+    successMessage: 'Omitting the second argument makes <code>.splice()</code> remove everything from that index onward. For example, <code>arr.splice(0)</code> removes and returns all items, leaving an empty array behind.',
     secondBeltAfter: ['tuna', 'shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -171,7 +171,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'squid', 'shrimp'],
     beltAfterLabel: 'upper belt',
-    successMessage: 'You can insert more items than you remove! splice(1, 1, \'a\', \'b\', \'c\') would replace one item with three.',
+    successMessage: 'You can insert more items than you remove. <code>splice(1, 1, "a", "b", "c")</code> replaces one element with three, growing the array. The number of insertions is unlimited.',
     secondBeltAfter: ['tuna'],
     secondBeltAfterLabel: 'lower belt',
   },
@@ -190,7 +190,7 @@ const chapter2 = [
     validate: (userCode, context) => {
       return context.belt.length === 4 && context.belt[1] === 'tuna' && context.belt[2] === 'eel'
     },
-    successMessage: '.splice() is the Swiss Army knife of array methods — it can remove, replace, and insert all in one call!',
+    successMessage: '<code>.splice()</code> can remove, replace, or insert depending on its arguments. Most other languages need separate methods for each operation. It\'s one of JavaScript\'s most versatile array tools.',
     beltBefore: ['salmon', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'eel', 'shrimp'],
   },
@@ -200,7 +200,7 @@ const chapter2 = [
     chapter: 2,
     chapterName: 'Adding & Removing',
     description:
-      "A food blogger wants to photograph just the tuna and shrimp! Careful: <code>.slice()</code> looks like <code>.splice()</code> but works very differently. It copies a section of the belt into a <strong>new array</strong> without changing the original. <code>.slice(start, end)</code> copies from <code>start</code> up to (but not including) <code>end</code>. Copy the tuna and shrimp from the middle!",
+      "<code>.slice()</code> looks like <code>.splice()</code> but works very differently. It copies a section of the belt into a <strong>new array</strong> without changing the original. <code>.slice(start, end)</code> copies from <code>start</code> up to (but not including) <code>end</code>. Copy the tuna and shrimp from the middle so people can take a photo of just those!",
     hint: "The end index is exclusive: slice(1, 3) copies indices 1 and 2.",
     preCode: "const upperBelt = ['salmon', 'tuna', 'shrimp', 'eel']",
     postCode: '',
@@ -222,7 +222,7 @@ const chapter2 = [
     beltBeforeLabel: 'upper belt',
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfterLabel: 'upper belt',
-    successMessage: 'Notice the original array is unchanged — .slice() never mutates! Easy to mix up with .splice(), which does.',
+    successMessage: '<code>.slice()</code> returns a new array and never modifies the original. To remember the difference: <code>.splice()</code> changes the array in place (mutates), while <code>.slice()</code> always creates a safe copy.',
     secondBeltAfter: ['tuna', 'shrimp'],
     secondBeltAfterLabel: 'lower belt',
   },

@@ -19,7 +19,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: '.includes() uses strict equality (===), so it won\'t find 1 if the array has \'1\'. Types matter!',
+    successMessage: '<code>.includes()</code> uses strict equality (<code>===</code>), so it distinguishes between types. <code>[1, 2].includes("1")</code> is <code>false</code> because the number <code>1</code> and the string <code>"1"</code> are not the same.',
     plate: { type: 'value', value: 'true', label: 'hasTuna' },
   },
   {
@@ -41,7 +41,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: '.indexOf() returns the first match. Use .lastIndexOf() to search from the end!',
+    successMessage: '<code>.indexOf()</code> returns the position of the first match, or <code>-1</code> if not found. Its sibling <code>.lastIndexOf()</code> searches from the end. Both use strict equality, just like <code>.includes()</code>.',
     plate: { type: 'value', value: 2, label: 'pos' },
   },
   {
@@ -64,7 +64,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
-    successMessage: 'Passing a function by name (without parentheses) is called passing a "callback." You\'ll see this pattern everywhere in JS!',
+    successMessage: 'Passing a function by name (without parentheses) is called a "callback." Callbacks are central to JavaScript: event handlers, timers, <code>Promise</code>s, and most array methods all use them.',
     plate: { type: 'sushi', value: 'salmon', label: 'found', highlightIndex: 1 },
   },
   {
@@ -73,7 +73,7 @@ const chapter3 = [
     chapter: 3,
     chapterName: 'Searching the Belt',
     description:
-      "No taste-tester this time. You'll do it yourself! Instead of creating a separate function, you can write it directly inside <code>.find()</code>. This is called an <strong>arrow function</strong>: <code>(dish) => { return ... }</code>. Each dish passes through your function one at a time. Find the shrimp!",
+      "No taste-tester this time. You'll do it yourself! Instead of creating a separate function, you can write it directly inside <code>.find()</code>. This is called an <strong>arrow function</strong>: <code>(dish) => { return ... }</code>. Each dish passes through your function one at a time. Find the shrimp! Remember to write your function in a single line.",
     hint: "Write the test inline: belt.find((dish) => { return dish === ... })",
     preCode: "const belt = ['tuna', 'salmon', 'shrimp', 'salmon']",
     postCode: '',
@@ -86,7 +86,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
-    successMessage: 'If .find() doesn\'t match anything, it returns undefined — not an error, not null. Always good to check!',
+    successMessage: '<code>.find()</code> returns <code>undefined</code> when nothing matches, not <code>null</code> or an error. Since <code>undefined</code> is falsy, you can write: <code>const item = arr.find(fn)</code> and then <code>if (item) { ... }</code> to handle both cases.',
     plate: { type: 'sushi', value: 'shrimp', label: 'found', highlightIndex: 2 },
   },
   {
@@ -108,7 +108,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'tuna', 'eel', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'eel', 'shrimp'],
-    successMessage: 'Like .indexOf(), .findIndex() returns -1 when nothing matches. Same convention, but with a custom test!',
+    successMessage: '<code>.findIndex()</code> returns <code>-1</code> when nothing matches, same as <code>.indexOf()</code>. The difference is <code>.findIndex()</code> takes a custom test function, while <code>.indexOf()</code> only checks for exact values.',
     plate: { type: 'value', value: 2, label: 'pos' },
   },
   {
@@ -130,7 +130,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'salmon', 'salmon'],
     beltAfter: ['salmon', 'salmon', 'salmon'],
-    successMessage: 'The opposite of .every() is .some() — it returns true if at least one item passes the test!',
+    successMessage: '<code>.every()</code> has a counterpart called <code>.some()</code>, which returns <code>true</code> if at least one item passes. Together they cover "all match" and "any match" checks on arrays.',
     plate: { type: 'value', value: 'true', label: 'allSalmon' },
   },
 ]

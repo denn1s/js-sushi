@@ -17,7 +17,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
-    successMessage: 'Destructuring also works in function parameters! function eat([first]) { } unpacks the array right in the signature.',
+    successMessage: 'Destructuring works in function parameters too: <code>function process([first, second]) { }</code> unpacks the array right in the signature, saving you from writing <code>first = arr[0]</code> inside the body.',
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
   },
   {
@@ -41,7 +41,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'first', highlightIndex: 0 },
       { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
     ],
-    successMessage: 'You can set defaults too: const [first = \'empty\', second = \'empty\'] = belt. If the array is too short, the default kicks in!',
+    successMessage: 'Destructuring supports default values: <code>const [a = 0, b = 0] = arr</code>. If the array has fewer items than variables, the defaults kick in instead of giving you <code>undefined</code>.',
   },
   {
     title: 'Leftovers Bag',
@@ -67,7 +67,7 @@ const chapter7 = [
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
-    successMessage: '...rest must always be the last item in the pattern. const [...all, last] = belt would be a syntax error!',
+    successMessage: 'The rest element (<code>...name</code>) must always come last in the pattern. <code>const [...all, last] = arr</code> is a syntax error. If you need the last element separately, use <code>.at(-1)</code> or <code>.slice(-1)</code>.',
     secondBeltAfter: ['tuna', 'shrimp', 'eel'],
     secondBeltAfterLabel: 'lowerBelt',
   },
@@ -88,7 +88,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
-    successMessage: 'You can skip multiple positions: const [, , third] = belt grabs only the third item. But at that point, belt[2] might be clearer!',
+    successMessage: 'You can skip multiple positions with extra commas: <code>const [, , third] = arr</code> grabs only index 2. For deeply nested skipping, bracket access like <code>arr[5]</code> is usually more readable.',
     plate: { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
   },
   {
@@ -119,7 +119,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'name', highlightIndex: 0 },
       { type: 'value', value: 5, label: 'price' },
     ],
-    successMessage: 'You can rename during destructuring: const { name: dishName } = dish puts the value into dishName instead of name!',
+    successMessage: 'Renaming during destructuring avoids naming conflicts: <code>const { name: dishName } = obj</code> creates a variable called <code>dishName</code> holding the value of <code>obj.name</code>. Very useful with nested data.',
   },
   {
     title: 'The Lunch Menu',
@@ -152,7 +152,7 @@ const chapter7 = [
       { name: 'eel', price: 4 },
       { name: 'shrimp', price: 2 },
     ],
-    successMessage: 'You just chained .filter() and .map() with destructuring — a pattern used daily in professional codebases. You\'ve come a long way!',
+    successMessage: 'Chaining <code>.filter().map()</code> with destructuring in the callbacks is a pattern you\'ll see daily in production code. It\'s concise, readable, and avoids intermediate variables. Well done!',
     beltAfter: ['tuna', 'eel', 'shrimp'],
     beltAfterLabel: 'lunch menu',
   },

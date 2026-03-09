@@ -84,6 +84,9 @@ function buildLevelSelector() {
     const btn = document.createElement('button')
     btn.textContent = level.id
     btn.className = 'level-dot'
+    if (level.id === currentLevelId) {
+      btn.classList.add('active')
+    }
     if (progress.completedLevels.includes(level.id)) {
       btn.classList.add('completed')
     }

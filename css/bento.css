@@ -1,6 +1,6 @@
 .bento {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(640px, 1fr) 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "title  sushi"
@@ -45,14 +45,33 @@
   grid-area: sushi;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .bento {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas:
       "title"
-      "sushi"
       "info"
-      "editor";
+      "editor"
+      "sushi";
+    max-height: none;
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .title-area {
+    min-height: auto;
+  }
+
+  .instructions-area {
+    min-height: auto;
+  }
+
+  .editor-area {
+    height: auto;
+  }
+
+  .bento-card {
+    padding: 16px;
   }
 }

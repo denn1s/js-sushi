@@ -23,7 +23,7 @@ const chapter1 = [
         context.belt[2] === 'shrimp'
       )
     },
-    successMessage: 'You can check if something is an array with Array.isArray(belt) — handy when you\'re not sure what you\'re working with!',
+    successMessage: '<code>Array.isArray()</code> is the reliable way to check if a value is an array. <code>typeof</code> returns <code>"object"</code> for arrays, which isn\'t helpful. Always use <code>Array.isArray()</code> when you need to be sure.',
     beltBefore: ['salmon'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
   },
@@ -44,7 +44,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.count === 3
     },
-    successMessage: '.length isn\'t a method — no parentheses needed! It\'s a property. Strings have it too: try \'sushi\'.length in a console.',
+    successMessage: '<code>.length</code> is a property, not a method, so you never call it with <code>()</code>. You can also set it directly: <code>arr.length = 0</code> is a quick way to empty an array. Strings have <code>.length</code> too!',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
     plate: { type: 'value', value: 3, label: 'count' },
@@ -68,7 +68,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: 'Fun fact: belt[\'1\'] works too — JS quietly converts the string to a number!',
+    successMessage: 'JS converts array indices to strings internally, so <code>arr["1"]</code> works the same as <code>arr[1]</code>. Arrays are actually objects under the hood with numeric keys!',
     plate: { type: 'sushi', value: 'tuna', label: 'picked', highlightIndex: 1 },
   },
   {
@@ -90,7 +90,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: 'Modern JS has an easier way: belt.at(-1) grabs the last item. Negative indices count from the end!',
+    successMessage: 'The <code>.at()</code> method makes this easier: <code>arr.at(-1)</code> grabs the last item, <code>arr.at(-2)</code> the second-to-last. Negative indices count from the end, no math needed!',
     plate: { type: 'sushi', value: 'shrimp', label: 'last', highlightIndex: 2 },
   },
   {
@@ -108,7 +108,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.belt[1] === 'squid'
     },
-    successMessage: 'Even though belt was declared with const, you can still change its contents! const only prevents reassigning the variable itself, not mutating the array.',
+    successMessage: '<code>const</code> prevents reassignment (you can\'t do <code>belt = otherArray</code>), but it doesn\'t freeze the contents. If you want a truly immutable array, look into <code>Object.freeze()</code>.',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'squid', 'shrimp'],
     highlightIndex: 1,
@@ -132,7 +132,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: 'Try .join(\' | \') or .join(\'\') for different effects. With no argument, .join() defaults to commas!',
+    successMessage: '<code>.join()</code> is the opposite of <code>String.split()</code>. You can round-trip between them: <code>"a,b".split(",")</code> gives <code>["a","b"]</code>, and <code>["a","b"].join(",")</code> gives <code>"a,b"</code> right back.',
     plate: { type: 'value', value: 'salmon,tuna,shrimp', label: 'menu' },
   },
 ]

@@ -55,7 +55,7 @@ export function executeLevel(level, userCode) {
     return {
       success: passed,
       context,
-      error: passed ? null : 'Not quite — check the expected result and try again.',
+      error: passed ? null : 'Not quite! Try again.',
     }
   } catch (err) {
     return { success: false, error: err.message }

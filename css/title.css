@@ -47,6 +47,22 @@
   position: relative;
 }
 
+@media (max-width: 1200px) {
+  .title-area {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    gap: 12px;
+    height: auto;
+  }
+
+  .title-right {
+    flex-direction: row;
+    width: 300px;
+    justify-content: center;
+  }
+}
+
 /* Level dropdown */
 .level-dropdown {
   background: #E9CFAC;
@@ -161,16 +177,16 @@
   box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-.level-dot.active {
-  background: var(--orange);
-  color: var(--white);
-  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2);
-}
-
 .level-dot.completed {
   background: var(--green);
   color: var(--content-text);
   box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.level-dot.active {
+  background: var(--orange);
+  color: var(--white);
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Nav arrows */
