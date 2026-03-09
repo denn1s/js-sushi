@@ -1,0 +1,18 @@
+:root {
+  /* Wood */
+  --wood-base: #F0C894;
+  --wood-grain: #DAAC78;
+
+  /* Palette */
+  --red: #D9564A;
+  --blue: #83C4D3;
+  --yellow: #F7C94C;
+  --orange: #F18331;
+  --white: #FAF0E4;
+  --green: #55A389;
+
+  /* Content */
+  --content-bg: #F8F1DE;
+  --content-highlight: #E4D1B4;
+  --content-text: #070200;
+}

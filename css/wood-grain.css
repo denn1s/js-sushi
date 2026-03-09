@@ -1,0 +1,20 @@
+/* Wood grain overlay using SVG feTurbulence
+   To remove: delete the <link> to this file in index.html
+   and the <svg> filter block in the <body> */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: url(#wood-grain);
+  transform: rotate(90deg) scale(1.5);
+  background: var(--wood-grain);
+  opacity: 0.20;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}

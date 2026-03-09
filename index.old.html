@@ -4,13 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS Sushi — Learn JavaScript Through Arrays</title>
-  <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/belt.css">
   <link rel="stylesheet" href="css/editor.css">
-  <link rel="stylesheet" href="css/wood-grain.css">
-  <link rel="stylesheet" href="css/bento.css">
-  <link rel="stylesheet" href="css/title.css">
   <script type="importmap">
     {
       "imports": {
@@ -32,55 +28,47 @@
   </script>
 </head>
 <body>
+  <header class="header">
+    <h1>JS Sushi 🍣</h1>
+    <div class="header-nav">
+      <span id="chapter-label"></span>
+      <span id="level-indicator"></span>
+      <button class="nav-btn" id="prev-btn">&larr; Prev</button>
+      <button class="nav-btn" id="next-btn">Next &rarr;</button>
+    </div>
+  </header>
 
-  <!-- SVG filter for wood grain texture — remove with css/wood-grain.css -->
-  <svg width="0" height="0" style="position:absolute">
-    <filter id="wood-grain">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.02 0.2"
-        numOctaves="4"
-        seed="3"
-        stitchTiles="stitch"
-      />
-      <feColorMatrix type="saturate" values="0" />
-    </filter>
-  </svg>
+  <main class="main">
+    <aside class="info-panel">
+      <h2 id="level-title"></h2>
+      <p id="level-subtitle" class="subtitle"></p>
+      <div class="description" id="level-description"></div>
+      <button id="hint-btn">Show Hint</button>
+      <div id="level-hint" class="hidden"></div>
+    </aside>
 
-  <main class="bento">
-    <div class="bento-card title-area">
-      <div class="title-left">
-        <img class="mascot" src="svg/mascot.svg" alt="Sushi mascot">
-        <h1 class="game-title"><span class="title-js">JS</span> <span class="title-sushi">Sushi</span></h1>
+    <section class="game-panel">
+      <div class="belt-section">
+        <div class="belt-container" id="belt-display"></div>
+        <div class="belt-container second-belt hidden" id="belt-display-2"></div>
+        <div class="plate-container hidden" id="plate-display"></div>
       </div>
-      <div class="title-right">
-        <button class="level-dropdown" id="level-dropdown">
-          Level <span id="current-level">1</span> of <span id="total-levels">40</span>
-          <span class="dropdown-arrow">&#9662;</span>
-        </button>
-        <div class="level-modal hidden" id="level-modal">
-          <div class="level-grid" id="level-grid"></div>
-        </div>
-        <div class="nav-arrows">
-          <button class="arrow-btn arrow-left" id="prev-btn">
-            <span class="arrow-icon">&lsaquo;</span>
-          </button>
-          <button class="arrow-btn arrow-right" id="next-btn">
-            <span class="arrow-icon">&rsaquo;</span>
-          </button>
+
+      <div class="editor-section">
+        <pre class="pre-code" id="pre-code"></pre>
+        <div id="editor-container"></div>
+        <pre class="post-code" id="post-code"></pre>
+        <div class="editor-controls">
+          <button id="run-btn">Run ▶</button>
+          <span class="run-hint">Ctrl+Enter</span>
         </div>
       </div>
-    </div>
-    <div class="bento-card instructions-area">
-      Instructions
-    </div>
-    <div class="bento-card editor-area">
-      Code Editor
-    </div>
-    <div class="bento-card sushi-area">
-      Sushi Belt
-    </div>
+
+      <div class="feedback hidden" id="feedback"></div>
+    </section>
   </main>
+
+  <nav class="level-selector-bar" id="level-selector"></nav>
 
   <script type="module" src="js/main.js"></script>
 </body>
