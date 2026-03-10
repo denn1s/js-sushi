@@ -1,0 +1,51 @@
+# JS Sushi
+
+> An interactive browser game that teaches JavaScript array methods through a sushi conveyor belt metaphor.
+
+JS Sushi is a free, browser-based coding game where students write real JavaScript to manipulate a visual sushi conveyor belt. It covers 40 levels across 7 chapters, progressing from array basics to advanced patterns.
+
+## URL
+
+https://denn1s.github.io/js-sushi/
+
+## How It Works
+
+Each level presents a coding challenge in a single-line editor. Students write one line of JavaScript that manipulates an array (represented as a sushi belt). When the code runs, the belt animates to show the result. Correct solutions advance the student to the next level.
+
+- No build step, no setup — runs entirely in the browser
+- Uses CodeMirror 6 for the code editor
+- Sandboxed code execution via `new Function()`
+- Progress saved to localStorage
+
+## Chapters
+
+1. **The Empty Belt** (Levels 1-6): Array creation, access by index, mutation
+2. **Adding & Removing** (Levels 7-15): push, pop, unshift, shift, splice, slice
+3. **Searching the Belt** (Levels 16-21): includes, indexOf, find, findIndex, every
+4. **Transforming the Belt** (Levels 22-28): filter, map, reduce, working with objects
+5. **Sorting & Rearranging** (Level 29): sort with custom comparison functions
+6. **Spread & Copying** (Levels 30-34): copy trap, spread copy, safe copy, spread add
+7. **Destructuring** (Levels 35-40): array destructuring, object destructuring, rest syntax, final challenge
+
+## Topics Covered
+
+- Array literal syntax: `['salmon', 'tuna']`
+- Accessing elements: `belt[0]`, `belt.length`
+- Modifying arrays: `push()`, `pop()`, `unshift()`, `shift()`
+- Slicing and splicing: `slice()`, `splice()`
+- Searching: `includes()`, `indexOf()`, `find()`, `findIndex()`, `every()`
+- Transforming: `filter()`, `map()`, `reduce()`
+- Sorting: `sort()` with comparators
+- Spread operator: `[...belt]`, `[...a, ...b]`
+- Destructuring: `const [first, ...rest] = belt`
+
+## Tech Stack
+
+- Vanilla JavaScript (ES modules, no framework)
+- CodeMirror 6 (loaded from CDN)
+- Catppuccin Mocha color theme
+- Single HTML page, no build step
+
+## Target Audience
+
+Beginner to intermediate JavaScript learners who want hands-on practice with array methods in an engaging, visual format.

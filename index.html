@@ -1,14 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JS Sushi — Learn JavaScript Through Arrays</title>
+  <title>JS Sushi — Learn JavaScript Arrays Through an Interactive Sushi Belt Game</title>
+  <meta name="description" content="Learn JavaScript array methods by writing real code that controls a visual sushi conveyor belt. 40 interactive levels covering push, pop, map, filter, reduce, spread, destructuring and more.">
+  <meta name="keywords" content="JavaScript, learn JavaScript, JavaScript arrays, array methods, interactive coding, coding game, sushi belt, push, pop, map, filter, reduce, spread operator, destructuring, beginner JavaScript, learn to code">
+  <meta name="author" content="JS Sushi">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#1e1e2e">
+  <link rel="canonical" href="https://denn1s.github.io/js-sushi/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://denn1s.github.io/js-sushi/">
+  <meta property="og:title" content="JS Sushi — Learn JavaScript Arrays Through an Interactive Sushi Belt Game">
+  <meta property="og:description" content="Write real JavaScript to manipulate a visual sushi conveyor belt. 40 levels covering arrays from basics to advanced patterns like map, filter, reduce, spread, and destructuring.">
+  <meta property="og:image" content="https://denn1s.github.io/js-sushi/favicon/android-chrome-512x512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="JS Sushi mascot — a friendly sushi character">
+  <meta property="og:site_name" content="JS Sushi">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JS Sushi — Learn JavaScript Arrays Through an Interactive Sushi Belt Game">
+  <meta name="twitter:description" content="Write real JavaScript to manipulate a visual sushi conveyor belt. 40 levels covering arrays from basics to advanced patterns.">
+  <meta name="twitter:image" content="https://denn1s.github.io/js-sushi/favicon/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="JS Sushi mascot — a friendly sushi character">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JS Sushi",
+    "url": "https://denn1s.github.io/js-sushi/",
+    "description": "An interactive browser game that teaches JavaScript array methods through a sushi conveyor belt metaphor. 40 levels across 7 chapters.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires a modern browser with ES module support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "JS Sushi"
+    },
+    "image": "https://denn1s.github.io/js-sushi/favicon/android-chrome-512x512.png",
+    "screenshot": "https://denn1s.github.io/js-sushi/favicon/android-chrome-512x512.png",
+    "educationalLevel": "Beginner",
+    "learningResourceType": "Interactive game",
+    "teaches": "JavaScript array methods",
+    "inLanguage": "en",
+    "isAccessibleForFree": true
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Learn JavaScript Arrays with JS Sushi",
+    "description": "Master JavaScript array methods through 40 interactive levels. Topics include array creation, push, pop, splice, slice, map, filter, reduce, spread operator, and destructuring.",
+    "provider": {
+      "@type": "Organization",
+      "name": "JS Sushi"
+    },
+    "isAccessibleForFree": true,
+    "educationalLevel": "Beginner",
+    "inLanguage": "en",
+    "numberOfCredits": 0,
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online",
+      "courseWorkload": "PT2H"
+    }
+  }
+  </script>
+
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="manifest" href="favicon/site.webmanifest">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">

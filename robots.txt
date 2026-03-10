@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://denn1s.github.io/js-sushi/sitemap.xml
