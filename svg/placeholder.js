@@ -7,14 +7,29 @@ const SUSHI_COLORS = {
   default: '#94a3b8',
 }
 
-function getColor(item) {
-  if (typeof item === 'object') {
-    return SUSHI_COLORS[item.name] || SUSHI_COLORS.default
+const PLATE_COLORS = {
+  salmon: 'orange',
+  tuna: 'red',
+  shrimp: 'pink',
+  eel: 'gold',
+  squid: 'purple',
+  default: 'blue',
+}
+
+const SUSHI_ASSETS = new Set(['salmon', 'tuna', 'shrimp', 'eel', 'squid'])
+
+function getSushiKey(item) {
+  if (typeof item === 'object' && item.name) {
+    return item.name.toLowerCase()
   }
-  const key = String(item)
+  return String(item)
     .split(' ')[0]
     .replace(/[^a-z]/gi, '')
     .toLowerCase()
+}
+
+function getColor(item) {
+  const key = getSushiKey(item)
   return SUSHI_COLORS[key] || SUSHI_COLORS.default
 }
 
@@ -32,23 +47,33 @@ function getLabel(item) {
 }
 
 export function renderSushiItem(item, x, index, highlighted = false) {
-  const color = getColor(item)
+  const key = getSushiKey(item)
   const label = getLabel(item)
-  const y = 50
   const highlightClass = highlighted ? ' highlighted' : ''
+  const plateColor = PLATE_COLORS[key] || PLATE_COLORS.default
+  const hasSushiAsset = SUSHI_ASSETS.has(key)
 
+  if (hasSushiAsset) {
+    return `
+      <div class="sushi-item${highlightClass}" data-index="${index}" data-sushi="${key}" style="--delay: ${index * 0.1}s">
+        <img class="sushi-plate" src="svg/plates/${plateColor}.svg" alt="" draggable="false">
+        <img class="sushi-piece" src="svg/sushi/${key}.svg" alt="" draggable="false">
+        <span class="sushi-label">${escapeHtml(label)}</span>
+      </div>
+    `
+  }
+
+  // Fallback for items without SVG assets — colored rect style via inline SVG
+  const color = SUSHI_COLORS[key] || SUSHI_COLORS.default
   return `
-    <g class="sushi-item${highlightClass}" data-index="${index}" style="--delay: ${index * 0.1}s">
-      <!-- plate -->
-      <ellipse cx="${x + 45}" cy="${y + 50}" rx="42" ry="12" fill="#94a3b8" opacity="0.3"/>
-      <!-- sushi piece -->
-      <rect x="${x + 10}" y="${y}" width="70" height="40" rx="8" fill="${color}" class="sushi-piece"/>
-      <!-- rice base -->
-      <rect x="${x + 15}" y="${y + 28}" width="60" height="14" rx="5" fill="#fefce8" opacity="0.7"/>
-      <!-- label -->
-      <text x="${x + 45}" y="${y + 80}" text-anchor="middle" fill="#cdd6f4"
-            font-size="11" font-family="sans-serif">${escapeHtml(label)}</text>
-    </g>
+    <div class="sushi-item${highlightClass}" data-index="${index}" style="--delay: ${index * 0.1}s">
+      <img class="sushi-plate" src="svg/plates/${plateColor}.svg" alt="" draggable="false">
+      <svg class="sushi-piece sushi-piece-fallback" viewBox="0 0 80 50">
+        <rect x="0" y="0" width="80" height="35" rx="8" fill="${color}"/>
+        <rect x="5" y="22" width="70" height="14" rx="5" fill="#fefce8" opacity="0.7"/>
+      </svg>
+      <span class="sushi-label">${escapeHtml(label)}</span>
+    </div>
   `
 }
 
@@ -63,29 +88,34 @@ function escapeHtml(str) {
 export function renderBelt(items, label, highlightIndex) {
   if (!items || items.length === 0) {
     return `
-      <svg viewBox="0 0 600 ${label ? 145 : 130}" class="belt-svg">
-        <rect x="0" y="45" width="600" height="50" rx="6" fill="#313244" class="belt-track"/>
-        <line x1="0" y1="70" x2="600" y2="70" stroke="#45475a" stroke-width="2" stroke-dasharray="8 6" class="belt-line"/>
-        <text x="300" y="75" text-anchor="middle" fill="#6c7086" font-size="14" font-family="sans-serif">empty belt</text>
-        ${label ? `<text x="300" y="125" text-anchor="middle" fill="#a6adc8" font-size="12" font-family="sans-serif">${escapeHtml(label)}</text>` : ''}
-      </svg>
+      <div class="conveyor">
+        <div class="conveyor-back"></div>
+        <div class="conveyor-surface"></div>
+        <div class="belt-items belt-empty">
+          <span class="belt-empty-label">empty belt</span>
+        </div>
+        <div class="conveyor-front"></div>
+        <div class="conveyor-wall"></div>
+      </div>
+      ${label ? `<span class="belt-label">${escapeHtml(label)}</span>` : ''}
     `
   }
 
-  const itemWidth = 100
-  const totalWidth = Math.max(600, items.length * itemWidth + 20)
-
   const sushiItems = items
-    .map((item, i) => renderSushiItem(item, i * itemWidth + 10, i, Array.isArray(highlightIndex) ? highlightIndex.includes(i) : i === highlightIndex))
+    .map((item, i) => renderSushiItem(item, 0, i, Array.isArray(highlightIndex) ? highlightIndex.includes(i) : i === highlightIndex))
     .join('')
 
   return `
-    <svg viewBox="0 0 ${totalWidth} 130" class="belt-svg">
-      <rect x="0" y="45" width="${totalWidth}" height="50" rx="6" fill="#313244" class="belt-track"/>
-      <line x1="0" y1="70" x2="${totalWidth}" y2="70" stroke="#45475a" stroke-width="2" stroke-dasharray="8 6" class="belt-line"/>
-      ${sushiItems}
-      ${label ? `<text x="${totalWidth / 2}" y="125" text-anchor="middle" fill="#a6adc8" font-size="12" font-family="sans-serif">${escapeHtml(label)}</text>` : ''}
-    </svg>
+    <div class="conveyor">
+      <div class="conveyor-back"></div>
+      <div class="conveyor-surface"></div>
+      <div class="belt-items">
+        ${sushiItems}
+      </div>
+      <div class="conveyor-front"></div>
+      <div class="conveyor-wall"></div>
+    </div>
+    ${label ? `<span class="belt-label">${escapeHtml(label)}</span>` : ''}
   `
 }
 

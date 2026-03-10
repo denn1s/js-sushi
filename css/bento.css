@@ -43,6 +43,8 @@
 
 .sushi-area {
   grid-area: sushi;
+  padding: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 1200px) {
@@ -73,5 +75,9 @@
 
   .bento-card {
     padding: 16px;
+  }
+
+  .sushi-area {
+    padding: 0;
   }
 }
