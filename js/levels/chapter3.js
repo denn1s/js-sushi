@@ -64,7 +64,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
-    successMessage: 'Passing a function by name (without parentheses) is called a "callback." Callbacks are central to JavaScript: event handlers, timers, <code>Promise</code>s, and most array methods all use them.',
+    successMessage: 'Notice <code>.find()</code> grabbed the first salmon at index 1, even though there\'s another one at index 3. It stops as soon as it finds a match. You passed <code>isSalmon</code> by name without <code>()</code> because <code>.find()</code> calls it for you on each dish.',
     plate: { type: 'sushi', value: 'salmon', label: 'found', highlightIndex: 1 },
   },
   {
@@ -86,7 +86,7 @@ const chapter3 = [
     },
     beltBefore: ['tuna', 'salmon', 'shrimp', 'salmon'],
     beltAfter: ['tuna', 'salmon', 'shrimp', 'salmon'],
-    successMessage: '<code>.find()</code> returns <code>undefined</code> when nothing matches, not <code>null</code> or an error. Since <code>undefined</code> is falsy, you can write: <code>const item = arr.find(fn)</code> and then <code>if (item) { ... }</code> to handle both cases.',
+    successMessage: 'You wrote the arrow function yourself this time! Notice the shrimp on the plate: <code>.find()</code> tested each dish in order and stopped at the first match. If nothing matches, it returns <code>undefined</code> instead of throwing an error.',
     plate: { type: 'sushi', value: 'shrimp', label: 'found', highlightIndex: 2 },
   },
   {
@@ -130,7 +130,7 @@ const chapter3 = [
     },
     beltBefore: ['salmon', 'salmon', 'salmon'],
     beltAfter: ['salmon', 'salmon', 'salmon'],
-    successMessage: '<code>.every()</code> has a counterpart called <code>.some()</code>, which returns <code>true</code> if at least one item passes. Together they cover "all match" and "any match" checks on arrays.',
+    successMessage: 'Look at the belt: all three dishes are salmon, so <code>.every()</code> returned <code>true</code>. If even one dish were different, it would be <code>false</code>. Its counterpart <code>.some()</code> returns <code>true</code> if at least one item passes.',
     plate: { type: 'value', value: 'true', label: 'allSalmon' },
   },
 ]

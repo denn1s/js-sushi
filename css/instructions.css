@@ -39,6 +39,12 @@
   font-size: 0.9em;
 }
 
+/* Success state — fade the card so the sushi area draws the eye */
+.instructions-area.success-state {
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
+}
+
 .hint-wrapper {
   align-self: center;
   position: relative;

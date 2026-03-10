@@ -17,7 +17,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
-    successMessage: 'Destructuring works in function parameters too: <code>function process([first, second]) { }</code> unpacks the array right in the signature, saving you from writing <code>first = arr[0]</code> inside the body.',
+    successMessage: 'The salmon landed on the plate! Instead of writing <code>belt[0]</code>, the brackets on the left pulled it out for you. Destructuring is just a shortcut for assigning array positions to variable names.',
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
   },
   {
@@ -41,7 +41,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'first', highlightIndex: 0 },
       { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
     ],
-    successMessage: 'Destructuring supports default values: <code>const [a = 0, b = 0] = arr</code>. If the array has fewer items than variables, the defaults kick in instead of giving you <code>undefined</code>.',
+    successMessage: 'Two dishes on the plates! Each name in the brackets maps to the next position: <code>first</code> gets index 0 (salmon), <code>second</code> gets index 1 (tuna). The remaining dishes stay on the belt untouched.',
   },
   {
     title: 'Leftovers Bag',
@@ -67,7 +67,7 @@ const chapter7 = [
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
     plate: { type: 'sushi', value: 'salmon', label: 'picked', highlightIndex: 0 },
-    successMessage: 'The rest element (<code>...name</code>) must always come last in the pattern. <code>const [...all, last] = arr</code> is a syntax error. If you need the last element separately, use <code>.at(-1)</code> or <code>.slice(-1)</code>.',
+    successMessage: 'The salmon landed on the plate and the rest went to the lower belt! <code>...lowerBelt</code> swept up everything after the first dish. The rest element must always be last in the pattern: <code>[first, ...rest]</code> works, but <code>[...rest, last]</code> is a syntax error.',
     secondBeltAfter: ['tuna', 'shrimp', 'eel'],
     secondBeltAfterLabel: 'lowerBelt',
   },
@@ -88,7 +88,7 @@ const chapter7 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp', 'eel'],
     beltAfter: ['salmon', 'tuna', 'shrimp', 'eel'],
-    successMessage: 'You can skip multiple positions with extra commas: <code>const [, , third] = arr</code> grabs only index 2. For deeply nested skipping, bracket access like <code>arr[5]</code> is usually more readable.',
+    successMessage: 'The tuna ended up on the plate even though it\'s the second dish! That leading comma skipped right past the salmon. You can skip multiple positions with more commas: <code>const [, , third] = arr</code> grabs index 2.',
     plate: { type: 'sushi', value: 'tuna', label: 'second', highlightIndex: 1 },
   },
   {
@@ -119,7 +119,7 @@ const chapter7 = [
       { type: 'sushi', value: 'salmon', label: 'name', highlightIndex: 0 },
       { type: 'value', value: 5, label: 'price' },
     ],
-    successMessage: 'Renaming during destructuring avoids naming conflicts: <code>const { name: dishName } = obj</code> creates a variable called <code>dishName</code> holding the value of <code>obj.name</code>. Very useful with nested data.',
+    successMessage: 'The salmon and its price are on the plates! With objects, the variable names must match the property names: <code>{ name }</code> grabs <code>dish.name</code>, <code>{ price }</code> grabs <code>dish.price</code>. Need a different variable name? Use <code>{ name: dishName }</code>.',
   },
   {
     title: 'The Lunch Menu',
@@ -152,7 +152,7 @@ const chapter7 = [
       { name: 'eel', price: 4 },
       { name: 'shrimp', price: 2 },
     ],
-    successMessage: 'Chaining <code>.filter().map()</code> with destructuring in the callbacks is a pattern you\'ll see daily in production code. It\'s concise, readable, and avoids intermediate variables. Well done!',
+    successMessage: 'The lunch menu belt shows just the affordable dish names! You chained <code>.filter()</code> to pick the cheap ones, then <code>.map()</code> to extract the names, and used destructuring in both. This is exactly how real-world JavaScript reads.',
     beltAfter: ['tuna', 'eel', 'shrimp'],
     beltAfterLabel: 'lunch menu',
   },

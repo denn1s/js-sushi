@@ -23,7 +23,7 @@ const chapter1 = [
         context.belt[2] === 'shrimp'
       )
     },
-    successMessage: '<code>Array.isArray()</code> is the reliable way to check if a value is an array. <code>typeof</code> returns <code>"object"</code> for arrays, which isn\'t helpful. Always use <code>Array.isArray()</code> when you need to be sure.',
+    successMessage: 'See the three dishes on the belt? That\'s your array! The square brackets <code>[]</code> create it, and commas separate each item. Order matters: <code>\'salmon\'</code> is first, <code>\'shrimp\'</code> is last, just like on the belt.',
     beltBefore: ['salmon'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
   },
@@ -44,7 +44,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.count === 3
     },
-    successMessage: '<code>.length</code> is a property, not a method, so you never call it with <code>()</code>. You can also set it directly: <code>arr.length = 0</code> is a quick way to empty an array. Strings have <code>.length</code> too!',
+    successMessage: 'Three dishes on the belt, so <code>.length</code> gives you 3. Notice it\'s a property, not a method, so no <code>()</code> needed. You can also set it directly: <code>arr.length = 0</code> is a quick way to empty an array!',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
     plate: { type: 'value', value: 3, label: 'count' },
@@ -68,7 +68,7 @@ const chapter1 = [
     },
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'tuna', 'shrimp'],
-    successMessage: 'JS converts array indices to strings internally, so <code>arr["1"]</code> works the same as <code>arr[1]</code>. Arrays are actually objects under the hood with numeric keys!',
+    successMessage: 'Notice the tuna is highlighted on the belt at position 1, not 2! Counting from zero trips everyone up at first. The first item is always <code>[0]</code>, so in a 3-item belt the last index is <code>[2]</code>, not <code>[3]</code>.',
     plate: { type: 'sushi', value: 'tuna', label: 'picked', highlightIndex: 1 },
   },
   {
@@ -108,7 +108,7 @@ const chapter1 = [
     validate: (userCode, context) => {
       return context.belt[1] === 'squid'
     },
-    successMessage: '<code>const</code> prevents reassignment (you can\'t do <code>belt = otherArray</code>), but it doesn\'t freeze the contents. If you want a truly immutable array, look into <code>Object.freeze()</code>.',
+    successMessage: 'Look at the belt: the squid replaced the tuna right in place! Assigning to an index changes that one slot without touching anything else. The belt is still the same array, just with different contents at position 1.',
     beltBefore: ['salmon', 'tuna', 'shrimp'],
     beltAfter: ['salmon', 'squid', 'shrimp'],
     highlightIndex: 1,

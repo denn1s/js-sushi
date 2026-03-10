@@ -230,15 +230,64 @@ to {
   top: -35px;
 }
 
-/* Highlighted sushi item (extraction indicator) */
+/* Highlighted sushi item — THE CHOSEN SUSHI — massive golden divine glow */
+.sushi-item.highlighted {
+  animation: chosenFloat 2s ease-in-out infinite;
+  z-index: 20;
+}
+
 .sushi-item.highlighted .sushi-piece {
-  filter: drop-shadow(0 0 8px #a6e3a1) drop-shadow(0 0 16px rgba(166, 227, 161, 0.4));
+  filter:
+    drop-shadow(0 0 18px #f7c94c)
+    drop-shadow(0 0 40px rgba(247, 201, 76, 0.7))
+    drop-shadow(0 0 70px rgba(247, 201, 76, 0.5))
+    drop-shadow(0 0 100px rgba(255, 215, 0, 0.35));
   animation: glowPulse 1.5s ease-in-out infinite;
 }
 
+/* Golden halo ring behind the chosen sushi */
+.sushi-item.highlighted::before {
+  content: '';
+  position: absolute;
+  top: -35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(247, 201, 76, 0.15) 40%, transparent 70%);
+  animation: haloBreath 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
 @keyframes glowPulse {
-0%, 100% { filter: drop-shadow(0 0 6px #a6e3a1) drop-shadow(0 0 12px rgba(166, 227, 161, 0.3)); }
-50% { filter: drop-shadow(0 0 12px #a6e3a1) drop-shadow(0 0 24px rgba(166, 227, 161, 0.5)); }
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 16px #f7c94c)
+      drop-shadow(0 0 36px rgba(247, 201, 76, 0.6))
+      drop-shadow(0 0 60px rgba(247, 201, 76, 0.4))
+      drop-shadow(0 0 90px rgba(255, 215, 0, 0.25));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 28px #ffd700)
+      drop-shadow(0 0 56px rgba(255, 215, 0, 0.8))
+      drop-shadow(0 0 90px rgba(247, 201, 76, 0.6))
+      drop-shadow(0 0 120px rgba(255, 215, 0, 0.4));
+  }
+}
+
+/* Gentle levitation */
+@keyframes chosenFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Halo breathing */
+@keyframes haloBreath {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
 }
 
 @keyframes popIn {
@@ -364,7 +413,7 @@ to {
 .plate-item-inner::after {
   content: '';
   position: absolute;
-  width: 80%;
+  width: 100px;
   height: 35px;
   background: black;
   opacity: 0.2;
@@ -441,6 +490,18 @@ to {
   font-size: 11px;
   font-family: sans-serif;
   margin-top: 4px;
+}
+
+/* Bouncy celebration pulse on sushi area after success */
+@keyframes successBounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.03); }
+  60%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.sushi-area.success-bounce {
+  animation: successBounce 0.5s ease;
 }
 
 @keyframes plateSlideUp {

@@ -109,6 +109,9 @@ export function renderLevel(level) {
   closeHint()
   currentLevelEl.textContent = level.id
 
+  // Remove success styling from instructions
+  document.querySelector('.instructions-area').classList.remove('success-state')
+
   // Restore hint button
   hintBtn.classList.remove('next-lesson-btn')
   hintBtn.innerHTML = '<img class="hint-icon" src="svg/light.svg" alt=""><span>Show Hint</span>'
@@ -122,9 +125,28 @@ export function renderLevel(level) {
   updateLevelSelector()
 }
 
+const congrats = [
+  'Correct!',
+  'Nailed it!',
+  'Nice one!',
+  'That\'s it!',
+  'You got it!',
+  'Well done!',
+  'Spot on!',
+  'Perfect!',
+]
+
+function randomCongrats() {
+  return congrats[Math.floor(Math.random() * congrats.length)]
+}
+
 export function showLevelSuccess(level) {
-  // Swap instructions body with success message
-  levelDesc.innerHTML = `<p>${level.successMessage || 'Great job!'}</p>`
+  // Swap instructions body with success message (random prefix so it's clearly feedback)
+  levelDesc.innerHTML = `<p><strong>${randomCongrats()}</strong> ${level.successMessage || 'Great job!'}</p>`
+
+  // Add green accent to instructions card so it looks different from the original prompt
+  const instructionsCard = document.querySelector('.instructions-area')
+  instructionsCard.classList.add('success-state')
 
   // Replace hint button with Next Lesson button
   closeHint()

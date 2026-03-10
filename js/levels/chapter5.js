@@ -19,7 +19,7 @@ const chapter5 = [
         userCode.includes('.sort(')
       )
     },
-    successMessage: '<code>.sort()</code> mutates the original array. For a safe sort, copy first: <code>[...arr].sort(fn)</code>. Without a compare function, <code>.sort()</code> converts values to strings, so <code>[10, 2, 1].sort()</code> gives <code>[1, 10, 2]</code>.',
+    successMessage: 'The belt rearranged: shrimp ($2), eel ($4), salmon ($5), cheapest first! Notice <code>.sort()</code> changed the belt itself, unlike <code>.filter()</code> or <code>.map()</code> which create new arrays. For a safe sort that keeps the original, use <code>[...belt].sort(fn)</code>.',
     beltBefore: [
       { name: 'eel', price: 4 },
       { name: 'salmon', price: 5 },

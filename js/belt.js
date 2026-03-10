@@ -11,6 +11,7 @@ export function showBelt(level) {
   }
   beltEl.innerHTML = renderBelt(level.beltBefore, level.beltBeforeLabel || '')
   beltEl.classList.remove('belt-success')
+  document.querySelector('.sushi-area').classList.remove('success-bounce')
 
   if (level.secondBeltBefore || level.secondBeltAfter) {
     belt2El.innerHTML = renderBelt(level.secondBeltBefore || [], level.secondBeltBeforeLabel || level.secondBeltAfterLabel || '')
@@ -35,6 +36,13 @@ export function showBelt(level) {
 }
 
 export function showSuccess(level) {
+  // Trigger bouncy pulse on the sushi area to draw the eye
+  const sushiArea = document.querySelector('.sushi-area')
+  sushiArea.classList.remove('success-bounce')
+  // Force reflow so re-adding the class restarts the animation
+  void sushiArea.offsetWidth
+  sushiArea.classList.add('success-bounce')
+
   // Collect highlightIndex from plate(s) and level
   let highlightIndex = level.highlightIndex
   if (level.plate) {

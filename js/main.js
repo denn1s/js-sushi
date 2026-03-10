@@ -37,6 +37,11 @@ function runCode() {
     showLevelSuccess(currentLevel)
     const progress = markCompleted(currentLevel.id, userCode)
     updateLevelSelector()
+
+    // On mobile, scroll down to the sushi area so the visual result is front and center
+    if (window.innerWidth <= 1200) {
+      document.querySelector('.sushi-area').scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }
   } else {
     showFeedback(result.error || 'Not quite — try again!', 'error')
   }
