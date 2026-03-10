@@ -3,6 +3,7 @@ import { renderBelt, renderPlate, renderEmptyPlate } from '../svg/placeholder.js
 const beltEl = document.getElementById('belt-display')
 const belt2El = document.getElementById('belt-display-2')
 const plateEl = document.getElementById('plate-display')
+const tableWallEl = document.querySelector('.table-wall')
 
 export function showBelt(level) {
   if (!beltEl) {
@@ -25,9 +26,11 @@ export function showBelt(level) {
       `<div class="plate-item" style="--plate-delay: ${i * 0.12}s">${renderEmptyPlate(p)}</div>`
     ).join('')
     plateEl.classList.remove('hidden')
+    tableWallEl.classList.remove('hidden')
   } else {
     plateEl.innerHTML = ''
     plateEl.classList.add('hidden')
+    tableWallEl.classList.add('hidden')
   }
 }
 
@@ -73,9 +76,11 @@ export function showSuccess(level) {
         `<div class="plate-item" style="--plate-delay: ${i * 0.12}s">${renderPlate(p)}</div>`
       ).join('')
       plateEl.classList.remove('hidden')
+      tableWallEl.classList.remove('hidden')
     } else {
       plateEl.innerHTML = ''
       plateEl.classList.add('hidden')
+      tableWallEl.classList.add('hidden')
     }
   }
 }

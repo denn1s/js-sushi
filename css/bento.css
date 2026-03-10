@@ -42,9 +42,40 @@
 }
 
 .sushi-area {
+  position: relative;
   grid-area: sushi;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background: linear-gradient(
+    180deg,
+    #e8c992 50%,
+    #db654b
+  )
+}
+
+.sushi-area::after {
+  content: '';
+  opacity: 0.8;
+  background-color: #e8c992;
+
+opacity: 0.8;
+background: radial-gradient(circle, transparent 20%, #ba7b50 20%, #ba7b50 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ba7b50 20%, #ba7b50 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#8b5531 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #8b5531 2px, #ba7b50 2px) -1px 0;
+background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+  background-repeat: repeat;
+  bottom: 0;
+  width: 200%;
+  position: absolute;
+  height: 50%;
+  transform: skewX(-45deg);
+}
+
+.sushi-area > div {
+  width: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -67,6 +98,7 @@
 
   .instructions-area {
     min-height: auto;
+    height: auto;
   }
 
   .editor-area {

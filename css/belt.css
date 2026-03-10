@@ -68,17 +68,48 @@
 
 .conveyor-wall {
   height: 100px;
-  background: red;
   background: linear-gradient(
     180deg,
     #774021,
     #774021 10px,
     #884e28 10px,
     #884e28
-    );}
+    );
+  position: relative;
+  border-bottom: 2px solid black;
+}
+
+/* Wood grain texture on conveyor pieces */
+.conveyor-wall::before {
+  opacity: 0.15;
+}
+
+.conveyor-front::before,
+.conveyor-back::before {
+  opacity: 0.30;
+}
+
+.conveyor-wall::before,
+.conveyor-front::before,
+.conveyor-back::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset: 0;
+  filter: url(#wood-grain);
+  background: var(--wood-grain, #a0764a);
+  pointer-events: none;
+}
+
+.conveyor-wall,
+.conveyor-front,
+.conveyor-back {
+  overflow: hidden;
+}
 
 .belt-container {
   position: relative;
+  z-index: 1;
 }
 
 /* Belt items container */
@@ -100,6 +131,7 @@
 }
 
 .belt-empty-label {
+  display: none;
   color: #6c7086;
   font-size: 14px;
   font-family: sans-serif;
@@ -127,6 +159,24 @@
   width: 100px;
   flex-shrink: 0;
   animation: slideIn 0.4s ease calc(var(--delay)) both;
+}
+
+/* shadow for the item */
+.sushi-item::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 30px;
+  background: black;
+  opacity: 0.2;
+  bottom: -5px;
+  z-index: -1;
+  border-radius: 100%;
+}
+
+.second-belt {
+  margin-top: -160px;
+  z-index: 10;
 }
 
 @keyframes slideIn {
@@ -207,37 +257,90 @@ to {
 }
 
 /* Second belt (lower tier) */
-.second-belt {
-  opacity: 0.85;
-  transform: scale(0.92);
-  transform-origin: center top;
-  border-color: var(--overlay) !important;
-}
-
 .second-belt.belt-success {
-  border-color: var(--green) !important;
   animation: secondBeltReveal 0.4s ease both;
 }
 
 @keyframes secondBeltReveal {
 from {
   opacity: 0;
-  transform: scale(0.92) translateY(-8px);
+  transform: translateY(-8px);
 }
 to {
-  opacity: 0.85;
-  transform: scale(0.92) translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 }
 
-/* Plate container */
+/* Plate container — wooden table surface */
 .plate-container {
+  position: relative;
+  z-index: 20;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   gap: 16px;
+  background: #B77743;
+  overflow: visible;
+  height: 100px;
+  margin-top: -80px;
+  background: linear-gradient(
+    180deg,
+    rgba(223, 164, 106, 1),
+    rgba(223, 164, 106, 1) 70px,
+    rgba(138, 75, 28, 1) 70px,
+    rgba(138, 75, 28, 1) 71px,
+    rgba(183, 119, 67, 1) 71px,
+    rgba(183, 119, 67, 1) 100px
+    );
+  border-bottom: 2px solid var(--content-text);
+  border-top: 2px solid var(--content-text);
 }
 
+/* Wood grain texture on table top */
+.plate-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  filter: url(#wood-grain);
+  background: var(--wood-grain, #a0764a);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+
+/* Table wall — depth below plate container */
+.table-wall {
+  position: relative;
+  z-index: 19;
+  height: 70px;
+  background: linear-gradient(
+    180deg,
+    #774021,
+    #774021 10px,
+    #884e28 10px,
+    #884e28
+    );
+  position: relative;
+  overflow: hidden;
+  border: 2px solid black;
+}
+
+.table-wall::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  filter: url(#wood-grain);
+  background: var(--wood-grain, #a0764a);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.table-wall.hidden {
+  display: none;
+}
+
+/* Plate items */
 .plate-item {
   animation: plateSlideUp 0.4s ease calc(var(--plate-delay, 0s)) both;
 }
@@ -246,9 +349,98 @@ to {
   display: none;
 }
 
-.plate-svg {
-  width: 180px;
+/* Plate item inner wrapper */
+.plate-item-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -125px;
+  container-type: inline-size;
+  width: 60px;
+}
+
+/* Shadow under plate items */
+.plate-item-inner::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 35px;
+  background: black;
+  opacity: 0.2;
+  bottom: 8px;
+  z-index: -1;
+  border-radius: 100%;
+}
+
+/* White plate image on table */
+.table-plate-img {
+  width: 140px;
   height: auto;
+  display: block;
+}
+
+/* Sushi piece on top of white plate */
+.table-sushi-piece {
+  position: absolute;
+  width: 130%;
+  top: -20%;
+  left: -10%;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.table-sushi-piece[src="svg/sushi/shrimp.svg"] {
+  width: 140%;
+}
+
+/* Receipt/paper image on table */
+.table-receipt-img {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+/* Value text on receipt */
+.table-value-text {
+  position: absolute;
+  top: 30px;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #1e1e2e;
+  text-align: center;
+  max-width: 70px;
+  overflow-wrap: break-word;
+}
+
+.table-value-text.single {
+  font-size: 3em;
+}
+
+.table-value-text.long {
+  font-size: 1em;
+}
+
+/* Question mark overlay for empty plates */
+.table-question-mark {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  font-family: sans-serif;
+  color: #6c7086;
+}
+
+/* Label below plate items */
+.table-plate-label {
+  display: block;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: sans-serif;
+  margin-top: 4px;
 }
 
 @keyframes plateSlideUp {
